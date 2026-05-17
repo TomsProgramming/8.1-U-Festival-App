@@ -18,10 +18,11 @@
     border: 1px solid var(--border);
     color: var(--text);
     cursor: pointer;
-    @include m.display(11px, 700);
+    @include m.button-text(12px);
     display: flex;
     align-items: center;
     gap: 6px;
+    @include m.press-feedback;
   }
 
   &__filters {
@@ -38,16 +39,21 @@
     flex-shrink: 0;
     background: var(--filter-chip-inactive-bg);
     color: var(--filter-chip-inactive-text);
-    @include m.display(12px, 700, 0.2px);
+    @include m.button-text(12px);
     cursor: pointer;
     border: 1px solid var(--border);
     white-space: nowrap;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.18s ease;
+
+    &:active { transform: scale(0.96); }
 
     &.is-active {
-      background: m.$accent;
+      background: var(--accent);
       color: #fff;
       border: none;
-      box-shadow: 0 4px 12px rgba(229, 53, 43, 0.4);
+      font-style: normal;
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(240, 50, 40, 0.4);
     }
   }
 
@@ -59,6 +65,7 @@
     height: clamp(360px, 55vh, 480px);
     position: relative;
     box-shadow: var(--shadow-card);
+    transition: height 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
 
     &.is-fullscreen {
       height: clamp(500px, 75vh, 680px);
@@ -76,8 +83,8 @@
   }
 
   &__btn {
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     border-radius: 10px;
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(10px);
@@ -86,11 +93,10 @@
     align-items: center;
     justify-content: center;
     color: #fff;
-    font-family: m.$font-display;
-    font-size: 16px;
-    font-weight: 800;
     cursor: pointer;
     user-select: none;
+    padding: 0;
+    @include m.press-feedback;
   }
 
   &__count {
@@ -113,7 +119,8 @@
     background: var(--surface);
     border: 1px solid var(--border);
     padding: 16px;
-    animation: slideUp 0.25s ease-out;
+    animation: slideUp 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: var(--shadow-card);
   }
 
   &__card-head {
@@ -127,8 +134,8 @@
   }
 
   &__card-title {
-    @include m.display(18px, 800);
-    color: var(--text);
+    @include m.display(18px, 700);
+    color: var(--heading);
     line-height: 1.1;
   }
 
@@ -139,8 +146,8 @@
   }
 
   &__card-close {
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     border-radius: 999px;
     background: var(--chip);
     display: flex;
@@ -149,6 +156,7 @@
     cursor: pointer;
     border: 0;
     padding: 0;
+    @include m.press-feedback;
   }
 
   &__card-desc {
@@ -160,16 +168,19 @@
 
   &__card-cta {
     margin-top: 14px;
-    padding: 11px 16px;
+    padding: 12px 16px;
     border-radius: 10px;
-    background: m.$accent;
+    background: var(--accent);
     color: #fff;
-    @include m.display(13px, 700);
+    @include m.button-text(14px);
     width: 100%;
     text-align: center;
     cursor: pointer;
-    box-shadow: 0 4px 14px rgba(229, 53, 43, 0.35);
+    box-shadow: 0 4px 14px rgba(240, 50, 40, 0.35);
     border: 0;
+    @include m.press-feedback;
+
+    &:hover { background: var(--accent-deep); }
   }
 
   &__legend-wrap {
@@ -177,8 +188,8 @@
   }
 
   &__legend-title {
-    @include m.display(18px, 800);
-    color: var(--text);
+    @include m.display(18px, 700);
+    color: var(--heading);
     margin-bottom: 12px;
   }
 
@@ -217,8 +228,8 @@
 
   &__lost {
     margin: 16px 20px 0;
-    background: linear-gradient(135deg, rgba(229, 53, 43, 0.15) 0%, rgba(229, 53, 43, 0.05) 100%);
-    border: 1px solid rgba(229, 53, 43, 0.25);
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-soft-border);
     border-radius: 14px;
     padding: 14px;
     display: flex;
@@ -230,15 +241,16 @@
     width: 40px;
     height: 40px;
     border-radius: 10px;
-    background: m.$accent;
+    background: var(--accent);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(240, 50, 40, 0.32);
   }
 
   &__lost-title {
-    @include m.display(13px, 800);
+    @include m.display(13px, 700);
     color: var(--text);
   }
 

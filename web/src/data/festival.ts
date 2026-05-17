@@ -35,7 +35,7 @@ export const STAGES: Stage[] = [
     name: 'Ponton',
     short: 'PON',
     img: '/assets/ponton.png',
-    color: '#E5352B',
+    color: '#F03228',
     descNL: 'Het openluchtpodium aan het water. De plek voor grote optredens onder de open hemel.',
     descEN: 'The open-air waterside stage. Home to the headline performances under the open sky.',
   },

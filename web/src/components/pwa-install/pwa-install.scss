@@ -1,0 +1,295 @@
+@use '../../styles/mixins' as m;
+
+// Small floating bubble at the bottom-left — mirrors the FAB cluster on the
+// right. Sits above the tab bar (z 95 like the FAB cluster).
+.pwa-bubble {
+  position: absolute;
+  bottom: calc(100px + env(safe-area-inset-bottom, 0px));
+  left: 14px;
+  z-index: 95;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px 8px 8px;
+  border-radius: 999px;
+  background: var(--fab-bg);
+  backdrop-filter: blur(18px);
+  border: 1px solid var(--fab-border);
+  box-shadow: var(--shadow-fab);
+  color: var(--text);
+  cursor: pointer;
+  font-family: m.$font-display;
+  @include m.press-feedback;
+
+  &__icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  &__label {
+    @include m.button-text(12px);
+    color: var(--text);
+    white-space: nowrap;
+  }
+}
+
+// Full-screen install sheet — same animation language as act-detail.
+.pwa-sheet {
+  position: absolute;
+  inset: 0;
+  z-index: 130;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  animation: fadeIn 0.18s ease both;
+
+  &__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(6px);
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  &__card {
+    position: relative;
+    width: 100%;
+    max-height: 92%;
+    overflow-y: auto;
+    background: var(--bg);
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    border-top: 1px solid var(--border);
+    box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.45);
+    padding: 24px 22px calc(28px + env(safe-area-inset-bottom, 0px));
+    animation: slideUp 0.32s cubic-bezier(0.2, 0.8, 0.2, 1);
+
+    // Grabber affordance at the very top of the sheet
+    &::before {
+      content: '';
+      display: block;
+      width: 42px;
+      height: 4px;
+      margin: -8px auto 14px;
+      background: var(--text-faint);
+      border-radius: 999px;
+      opacity: 0.6;
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    background: var(--chip);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    @include m.press-feedback;
+  }
+
+  &__icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(240, 50, 40, 0.28);
+    margin-bottom: 14px;
+
+    svg {
+      display: block;
+    }
+  }
+
+  &__title {
+    @include m.display(22px, 700, -0.4px);
+    color: var(--heading);
+    margin: 0 0 6px;
+    line-height: 1.15;
+  }
+
+  &__tagline {
+    @include m.body(13px);
+    color: var(--text-dim);
+    margin: 0 0 18px;
+  }
+
+  // ---- Why-install panel ---------------------------------------------------
+  &__why {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 12px 14px 14px;
+    margin-bottom: 16px;
+  }
+
+  &__why-title {
+    @include m.display(11px, 700, 1.4px);
+    color: var(--text-mute);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  &__why-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      @include m.body(13px);
+      color: var(--text);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 4px 0;
+
+      .m-icon {
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+    }
+  }
+
+  // ---- Steps panel --------------------------------------------------------
+  &__steps {
+    margin-bottom: 18px;
+  }
+
+  &__steps-title {
+    @include m.display(13px, 700, -0.1px);
+    color: var(--heading);
+    margin-bottom: 6px;
+  }
+
+  &__intro {
+    @include m.body(12.5px);
+    color: var(--text-mute);
+    margin: 0 0 12px;
+    padding: 10px 12px;
+    background: var(--info-soft);
+    border: 1px solid var(--info-soft-border);
+    border-radius: 12px;
+  }
+
+  &__step-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    counter-reset: pwa-step;
+  }
+
+  &__step {
+    display: grid;
+    grid-template-columns: 28px 28px 1fr;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    border-left: 4px solid var(--accent);
+  }
+
+  &__step-num {
+    width: 24px;
+    height: 24px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fff;
+    @include m.display(12px, 700);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__step-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: var(--chip);
+  }
+
+  &__step-text {
+    @include m.body(13px);
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  // ---- CTA row -----------------------------------------------------------
+  &__cta {
+    display: flex;
+    gap: 8px;
+  }
+
+  &__primary {
+    flex: 1;
+    padding: 14px;
+    border-radius: 12px;
+    background: var(--accent);
+    color: #fff;
+    @include m.button-text(14px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(240, 50, 40, 0.35);
+    @include m.press-feedback;
+
+    &:hover { background: var(--accent-deep); }
+  }
+
+  &__secondary {
+    padding: 14px 18px;
+    border-radius: 12px;
+    background: var(--surface);
+    color: var(--text);
+    @include m.button-text(14px);
+    border: 1px solid var(--border-strong);
+    cursor: pointer;
+    @include m.press-feedback;
+
+    &.is-solo {
+      flex: 1;
+    }
+  }
+}
+
+// On wider screens (desktop preview), center the sheet as a modal card.
+@media (min-width: 600px) {
+  .pwa-sheet {
+    align-items: center;
+
+    &__card {
+      max-width: 440px;
+      max-height: 86%;
+      border-radius: 22px;
+      border: 1px solid var(--border);
+
+      &::before {
+        display: none;
+      }
+    }
+  }
+}

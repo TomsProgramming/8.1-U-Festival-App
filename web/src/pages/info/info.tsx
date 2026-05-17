@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useApp } from '../../context/AppContext';
-import { Icons } from '../../components/brand/Icons';
+import { MatIcon } from '../../components/brand/MatIcon';
 import { Section } from '../../components/section/Section';
 import './info.scss';
 
@@ -51,18 +51,18 @@ export default function Info() {
   const reach =
     lang === 'nl'
       ? [
-          { icon: '🚲', title: 'Fiets', desc: 'Er is een grote gratis fietsenstalling waar je je fiets de hele dag kunt stallen.' },
-          { icon: '🚗', title: 'Auto', desc: 'In kaart zijn parkeerplekken aangeduid. Parkeren kan op P+R Papendorp, volg vanaf daar de borden.' },
-          { icon: '🚆', title: 'OV', desc: 'Kom je met het openbaar vervoer naar Utrecht? Plan dan je trip via 9292.' },
-          { icon: '🚌', title: 'Shuttlebus', desc: 'Vanaf Utrecht Centraal kun je een gratis shuttlebus nemen richting het festivalterrein.' },
-          { icon: '🚕', title: 'Taxi + Kiss & Ride', desc: 'Navigeer naar Strijkviertel en volg de borden "Kiss & Ride" of de Taxi-borden.' },
+          { icon: 'directions_bike', title: 'Fiets', desc: 'Er is een grote gratis fietsenstalling waar je je fiets de hele dag kunt stallen.' },
+          { icon: 'directions_car', title: 'Auto', desc: 'In kaart zijn parkeerplekken aangeduid. Parkeren kan op P+R Papendorp, volg vanaf daar de borden.' },
+          { icon: 'train', title: 'OV', desc: 'Kom je met het openbaar vervoer naar Utrecht? Plan dan je trip via 9292.' },
+          { icon: 'directions_bus', title: 'Shuttlebus', desc: 'Vanaf Utrecht Centraal kun je een gratis shuttlebus nemen richting het festivalterrein.' },
+          { icon: 'local_taxi', title: 'Taxi + Kiss & Ride', desc: 'Navigeer naar Strijkviertel en volg de borden "Kiss & Ride" of de Taxi-borden.' },
         ]
       : [
-          { icon: '🚲', title: 'Bike', desc: 'Big free bike parking where you can leave your bike all day.' },
-          { icon: '🚗', title: 'Car', desc: 'Parking is marked on the map. Park at P+R Papendorp and follow the signs.' },
-          { icon: '🚆', title: 'Public transport', desc: 'Coming by train? Plan your journey with 9292.' },
-          { icon: '🚌', title: 'Shuttle bus', desc: 'Free shuttle bus from Utrecht Central to the festival site.' },
-          { icon: '🚕', title: 'Taxi + Kiss & Ride', desc: 'Navigate to Strijkviertel and follow the Kiss & Ride or Taxi signs.' },
+          { icon: 'directions_bike', title: 'Bike', desc: 'Big free bike parking where you can leave your bike all day.' },
+          { icon: 'directions_car', title: 'Car', desc: 'Parking is marked on the map. Park at P+R Papendorp and follow the signs.' },
+          { icon: 'train', title: 'Public transport', desc: 'Coming by train? Plan your journey with 9292.' },
+          { icon: 'directions_bus', title: 'Shuttle bus', desc: 'Free shuttle bus from Utrecht Central to the festival site.' },
+          { icon: 'local_taxi', title: 'Taxi + Kiss & Ride', desc: 'Navigate to Strijkviertel and follow the Kiss & Ride or Taxi signs.' },
         ];
 
   return (
@@ -92,7 +92,9 @@ export default function Info() {
         <div className="info__reach">
           {reach.map((r, i) => (
             <div key={i} className="info__reach-item">
-              <div className="info__reach-icon">{r.icon}</div>
+              <div className="info__reach-icon">
+                <MatIcon name={r.icon} size={22} color="var(--accent)" weight={500} />
+              </div>
               <div>
                 <div className="info__reach-title">{r.title}</div>
                 <div className="info__reach-desc">{r.desc}</div>
@@ -135,10 +137,12 @@ function InfoRow({ k, v }: { k: string; v: string }) {
 function FAQItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="info__faq">
+    <div className={`info__faq ${open ? 'is-open' : ''}`}>
       <button type="button" className="info__faq-head" onClick={() => setOpen(!open)}>
         <span className="info__faq-q">{q}</span>
-        <span className={`info__faq-chev ${open ? 'is-open' : ''}`}>{Icons.chevron('var(--text-mute)', 14)}</span>
+        <span className={`info__faq-chev ${open ? 'is-open' : ''}`}>
+          <MatIcon name="expand_more" size={20} color="var(--text-mute)" weight={500} />
+        </span>
       </button>
       {open && <div className="info__faq-a">{a}</div>}
     </div>

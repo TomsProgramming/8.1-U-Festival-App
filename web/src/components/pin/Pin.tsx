@@ -20,13 +20,13 @@ interface PinProps {
 }
 
 const palette: Record<PinKind, { bg: string; fg: string; ring: string }> = {
-  stage: { bg: '#E5352B', fg: '#fff', ring: '#fff' },
-  entrance: { bg: '#0A0A0C', fg: '#fff', ring: '#FFC93C' },
+  stage: { bg: '#F03228', fg: '#fff', ring: '#fff' },
+  entrance: { bg: '#000000', fg: '#fff', ring: '#E3B505' },
   food: { bg: '#F59E0B', fg: '#fff', ring: '#fff' },
   bar: { bg: '#7C3AED', fg: '#fff', ring: '#fff' },
   icecream: { bg: '#EC4899', fg: '#fff', ring: '#fff' },
-  toilet: { bg: '#2563EB', fg: '#fff', ring: '#fff' },
-  firstaid: { bg: '#DC2626', fg: '#fff', ring: '#fff' },
+  toilet: { bg: '#247BA0', fg: '#fff', ring: '#fff' },
+  firstaid: { bg: '#F03228', fg: '#fff', ring: '#fff' },
   merch: { bg: '#059669', fg: '#fff', ring: '#fff' },
   locker: { bg: '#6B7280', fg: '#fff', ring: '#fff' },
 };

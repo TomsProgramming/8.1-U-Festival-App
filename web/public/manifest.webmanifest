@@ -1,0 +1,47 @@
+{
+  "name": "❤U Festival 2026",
+  "short_name": "❤U Festival",
+  "description": "De officiële app voor ❤U Festival 2026 — line-up, plattegrond en favorieten.",
+  "lang": "nl",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "id": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "fullscreen", "minimal-ui"],
+  "orientation": "portrait",
+  "background_color": "#0A0A0C",
+  "theme_color": "#0A0A0C",
+  "categories": ["entertainment", "music", "events"],
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Line-up",
+      "short_name": "Line-up",
+      "url": "/lineup"
+    },
+    {
+      "name": "Plattegrond",
+      "short_name": "Map",
+      "url": "/map"
+    },
+    {
+      "name": "Favorieten",
+      "short_name": "Favs",
+      "url": "/favs"
+    }
+  ]
+}

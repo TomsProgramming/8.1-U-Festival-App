@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="U Festival">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="80%">
+      <stop offset="0%" stop-color="#1A1A22"/>
+      <stop offset="60%" stop-color="#0A0A0C"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </radialGradient>
+  </defs>
+  <!-- Full-bleed background (maskable: launcher applies its own rounding) -->
+  <rect width="512" height="512" fill="url(#bg)"/>
+
+  <!-- Brand mark scaled down into the 80% safe area (centred) -->
+  <g transform="translate(166 176) scale(0.6)">
+    <path
+      d="M150 60
+         C 130 18, 56 18, 56 84
+         C 56 148, 150 192, 150 192
+         C 150 192, 244 148, 244 84
+         C 244 18, 170 18, 150 60 Z"
+      fill="#F03228"/>
+    <path
+      d="M56 152
+         L56 248
+         C 56 296, 96 312, 150 312
+         C 204 312, 244 296, 244 248
+         L244 152"
+      stroke="#FFFFFF" stroke-width="36" fill="none" stroke-linecap="square"/>
+  </g>
+</svg>

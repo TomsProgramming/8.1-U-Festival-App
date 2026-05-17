@@ -6,7 +6,7 @@
   z-index: 100;
   background: var(--bg);
   overflow-y: auto;
-  animation: slideUp 0.3s ease-out;
+  animation: slideUp 0.32s cubic-bezier(0.2, 0.8, 0.2, 1);
 
   &__hero {
     height: 380px;
@@ -18,7 +18,26 @@
   &__hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, transparent 30%, rgba(10, 10, 12, 1) 100%);
+    background:
+      linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.55) 0%,
+        rgba(0, 0, 0, 0) 22%,
+        rgba(0, 0, 0, 0) 42%,
+        rgba(0, 0, 0, 0.55) 72%,
+        rgba(0, 0, 0, 0.9) 100%
+      );
+  }
+
+  &__hero::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 40px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, var(--bg) 100%);
+    pointer-events: none;
   }
 
   &__topbar {
@@ -35,17 +54,21 @@
     width: 40px;
     height: 40px;
     border-radius: 999px;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.42);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     padding: 0;
+    color: #fff;
+    @include m.press-feedback;
 
     &.is-fav {
-      background: m.$accent;
+      background: rgba(240, 50, 40, 0.18);
+      border-color: rgba(240, 50, 40, 0.55);
+      box-shadow: 0 4px 12px rgba(240, 50, 40, 0.18);
     }
   }
 
@@ -57,22 +80,25 @@
   }
 
   &__eyebrow {
-    @include m.display(11px, 600, 2px);
-    color: m.$accent;
+    @include m.display(11px, 700, 2px);
+    color: var(--accent);
     text-transform: uppercase;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
   }
 
   &__title {
-    @include m.display(38px, 800, -1px);
+    @include m.display(38px, 700, -1px);
     color: #fff;
     line-height: 0.95;
     margin: 6px 0 0;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
   }
 
   &__tag {
     @include m.body(13px);
-    color: var(--text-dim);
+    color: rgba(255, 255, 255, 0.92);
     margin-top: 6px;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
   }
 
   &__body {
@@ -91,14 +117,14 @@
     border-radius: 14px;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-left: 4px solid m.$accent;
+    border-left: 4px solid var(--accent);
     display: flex;
     align-items: center;
     gap: 14px;
   }
 
   &__show-time {
-    @include m.display(22px, 800);
+    @include m.display(22px, 700);
     color: var(--text);
     line-height: 1;
   }
@@ -107,6 +133,7 @@
     @include m.body(10px);
     color: var(--text-faint);
     margin-top: 3px;
+    letter-spacing: 0.5px;
   }
 
   &__show-stage {
@@ -115,7 +142,7 @@
 
   &__show-stage-name {
     @include m.display(14px, 700);
-    color: var(--text);
+    color: var(--heading);
   }
 
   &__show-stage-sub {
@@ -132,7 +159,7 @@
   }
 
   &__cta {
-    margin-top: 20px;
+    margin-top: 22px;
     display: flex;
     gap: 8px;
   }
@@ -141,32 +168,39 @@
     flex: 1;
     padding: 14px;
     border-radius: 12px;
-    background: m.$accent;
+    background: var(--accent);
     color: #fff;
-    @include m.display(14px, 700);
+    @include m.button-text(14px);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
     border: none;
     cursor: pointer;
+    box-shadow: 0 6px 18px rgba(240, 50, 40, 0.35);
+    @include m.press-feedback;
+
+    &:hover { background: var(--accent-deep); }
 
     &.is-fav {
-      background: #1E1E22;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border-strong);
+      box-shadow: none;
     }
   }
 
   &__cta-secondary {
     padding: 14px 18px;
     border-radius: 12px;
-    background: #1E1E22;
-    color: #fff;
-    @include m.display(14px, 700);
+    background: var(--surface);
+    color: var(--text);
+    @include m.button-text(14px);
     display: flex;
     align-items: center;
     gap: 8px;
-    border: 1px solid var(--border);
+    border: 1px solid var(--border-strong);
     cursor: pointer;
+    @include m.press-feedback;
   }
 }

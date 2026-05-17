@@ -1,25 +1,68 @@
-// Shared font-family stacks and mixins for the festival app
+// Shared font-family stacks, color tokens and mixins for the festival app.
+// Guideline-driven: Sansation everywhere, Vermilion accent, Cerulean for headings,
+// Saffron for info/warnings, Material Symbols rounded for icons.
 @use 'sass:list';
 
-$font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-$font-body: 'Inter', -apple-system, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+$font-display: 'Sansation', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+$font-body: 'Sansation', -apple-system, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 
-$accent: #E5352B;
-$accent-deep: #B5281F;
-$gold: #FFC93C;
-$gold-deep: #E5A52B;
+// Brand palette — guideline tokens
+$accent: #F03228;        // Vermilion — buttons / interaction
+$accent-deep: #B92419;
+$secondary: #247BA0;     // Cerulean — kopteksten (headings)
+$secondary-deep: #1A5A77;
+$info: #E3B505;          // Saffron — info & waarschuwingen
+$info-deep: #A88404;
+$primary: #000000;       // Black
+$base: #FFFFFF;          // White
 
-@mixin display($size, $weight: 800, $tracking: -0.3px) {
+// Legacy aliases kept so existing usages still resolve.
+$gold: $info;
+$gold-deep: $info-deep;
+
+// Sansation maxes out at 700, so headings cap at 700 Bold per the guideline.
+@mixin display($size, $weight: 700, $tracking: -0.3px) {
   font-family: $font-display;
   font-size: $size;
   font-weight: $weight;
   letter-spacing: $tracking;
 }
 
+// Body copy — Regular 400 per guideline.
 @mixin body($size: 13px) {
   font-family: $font-body;
   font-size: $size;
+  font-weight: 400;
   line-height: 1.5;
+}
+
+// Buttons — Light 300 Italic per guideline.
+@mixin button-text($size: 14px) {
+  font-family: $font-body;
+  font-size: $size;
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.2px;
+}
+
+// Material Symbols Rounded — the guideline icon family.
+@mixin material-icon($size: 20px) {
+  font-family: 'Material Symbols Rounded';
+  font-weight: 400;
+  font-style: normal;
+  font-size: $size;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
 @mixin no-scrollbar {
@@ -28,5 +71,16 @@ $gold-deep: #E5A52B;
     width: 0;
     height: 0;
     display: none;
+  }
+}
+
+// Subtle press-down feedback for any interactive surface.
+@mixin press-feedback {
+  transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.18s ease,
+    background-color 0.18s ease;
+
+  &:active {
+    transform: scale(0.97);
   }
 }

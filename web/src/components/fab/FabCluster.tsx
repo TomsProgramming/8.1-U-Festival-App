@@ -1,7 +1,34 @@
 import { useState } from 'react';
 import { useApp } from '../../context/AppContext';
+import { MatIcon } from '../brand/MatIcon';
 import type { Lang } from '../../data/i18n';
 import './fab.scss';
+
+const FlagNL = (
+  <svg className="fab-lang__flag-svg" viewBox="0 0 9 6" aria-hidden="true">
+    <rect width="9" height="2" fill="#AE1C28" />
+    <rect y="2" width="9" height="2" fill="#fff" />
+    <rect y="4" width="9" height="2" fill="#21468B" />
+  </svg>
+);
+
+const FlagUK = (
+  <svg className="fab-lang__flag-svg" viewBox="0 0 60 30" preserveAspectRatio="none" aria-hidden="true">
+    <clipPath id="uk-clip">
+      <rect width="60" height="30" />
+    </clipPath>
+    <g clipPath="url(#uk-clip)">
+      <rect width="60" height="30" fill="#012169" />
+      <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" strokeWidth="7" />
+      <path d="M0,0 L60,30" stroke="#C8102E" strokeWidth="3" />
+      <path d="M60,0 L0,30" stroke="#C8102E" strokeWidth="3" />
+      <path d="M30,0 V30" stroke="#fff" strokeWidth="10" />
+      <path d="M0,15 H60" stroke="#fff" strokeWidth="10" />
+      <path d="M30,0 V30" stroke="#C8102E" strokeWidth="6" />
+      <path d="M0,15 H60" stroke="#C8102E" strokeWidth="6" />
+    </g>
+  </svg>
+);
 
 export function FabCluster() {
   const { theme, setTheme, lang, setLang } = useApp();
@@ -16,30 +43,10 @@ export function FabCluster() {
         aria-label="Toggle theme"
       >
         <span className={`fab__icon ${theme === 'dark' ? 'is-active' : ''}`}>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-            <path
-              d="M20 14.5A9 9 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"
-              fill="#FFC93C"
-              stroke="#FFC93C"
-              strokeWidth="1.4"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <MatIcon name="dark_mode" size={18} filled color="var(--info)" />
         </span>
         <span className={`fab__icon fab__icon--sun ${theme === 'light' ? 'is-active' : ''}`}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="4" fill="#E5352B" />
-            <g stroke="#E5352B" strokeWidth="2.2" strokeLinecap="round">
-              <line x1="12" y1="2" x2="12" y2="5" />
-              <line x1="12" y1="19" x2="12" y2="22" />
-              <line x1="2" y1="12" x2="5" y2="12" />
-              <line x1="19" y1="12" x2="22" y2="12" />
-              <line x1="4.9" y1="4.9" x2="7" y2="7" />
-              <line x1="17" y1="17" x2="19.1" y2="19.1" />
-              <line x1="4.9" y1="19.1" x2="7" y2="17" />
-              <line x1="17" y1="7" x2="19.1" y2="4.9" />
-            </g>
-          </svg>
+          <MatIcon name="light_mode" size={20} filled color="var(--accent)" />
         </span>
       </button>
 
@@ -51,21 +58,10 @@ export function FabCluster() {
           aria-label="Language"
         >
           {langOpen ? (
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" data-themed="stroke">
-              <path
-                d="M6 6l12 12M6 18L18 6"
-                stroke="rgba(255,255,255,0.85)"
-                strokeWidth="2.4"
-                strokeLinecap="round"
-              />
-            </svg>
+            <MatIcon name="close" size={18} weight={500} color="var(--text)" />
           ) : (
             <span className="fab-lang__globe-wrap">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" data-themed="stroke">
-                <circle cx="12" cy="12" r="9" stroke="#fff" strokeWidth="2" />
-                <ellipse cx="12" cy="12" rx="4" ry="9" stroke="#fff" strokeWidth="1.6" />
-                <line x1="3" y1="12" x2="21" y2="12" stroke="#fff" strokeWidth="1.6" />
-              </svg>
+              <MatIcon name="language" size={20} color="var(--text)" />
               <span className="fab-lang__badge">{lang.toUpperCase()}</span>
             </span>
           )}
@@ -83,8 +79,8 @@ export function FabCluster() {
                   setLangOpen(false);
                 }}
               >
-                <span className={`fab-lang__flag fab-lang__flag--${code}`}>
-                  {code === 'en' && <span className="fab-lang__flag-uk" />}
+                <span className="fab-lang__flag">
+                  {code === 'nl' ? FlagNL : FlagUK}
                 </span>
                 {code.toUpperCase()}
               </button>

@@ -1,7 +1,10 @@
 @use './mixins' as m;
 
-// Google Fonts
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+// Sansation — the only typeface in the brand. 300/400/700 + italic variants.
+@import url('https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+// Material Symbols Rounded — variable axes for FILL/weight/grade/optical size.
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,300..700,0..1,-25..0&display=swap');
 
 html,
 body {
@@ -9,15 +12,18 @@ body {
   padding: 0;
   background: #0A0A0C;
   font-family: m.$font-body;
+  font-weight: 400;
   min-height: 100vh;
   min-height: 100dvh;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @media (prefers-color-scheme: light) {
   html,
   body {
-    background: #F6F5F1;
+    background: m.$base;
   }
 }
 
@@ -32,6 +38,27 @@ body {
   margin: 0;
 }
 
+// Material Symbols utility class
+.m-icon {
+  @include m.material-icon(20px);
+
+  &--sm { font-size: 16px; }
+  &--md { font-size: 20px; }
+  &--lg { font-size: 24px; }
+  &--xl { font-size: 32px; }
+
+  &.is-filled { font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24; }
+  &.is-bold   { font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 24; }
+}
+
+// Buttons — guideline says Light 300 Italic.
+button,
+.btn {
+  font-family: m.$font-body;
+  font-weight: 300;
+  font-style: italic;
+}
+
 // Theme variables — applied via .ufest-shell[data-theme="..."]
 .ufest-shell {
   width: 100%;
@@ -40,9 +67,16 @@ body {
   position: relative;
   background: var(--bg);
   color: var(--text);
-  transition: background 0.3s, color 0.3s;
+  transition: background 0.35s ease, color 0.35s ease;
   margin: 0 auto;
   overflow: hidden;
+
+  --accent: #{m.$accent};
+  --accent-deep: #{m.$accent-deep};
+  --secondary: #{m.$secondary};
+  --secondary-deep: #{m.$secondary-deep};
+  --info: #{m.$info};
+  --info-deep: #{m.$info-deep};
 
   // Phone-frame preview on tablet/desktop. Phones get full width.
   @media (min-width: 600px) {
@@ -62,21 +96,23 @@ body {
     --surface: #17171A;
     --surface-2: rgba(22, 22, 26, 0.92);
     --text: #ffffff;
-    --text-dim: rgba(255, 255, 255, 0.65);
-    --text-mute: rgba(255, 255, 255, 0.45);
-    --text-faint: rgba(255, 255, 255, 0.3);
+    --text-dim: rgba(255, 255, 255, 0.72);
+    --text-mute: rgba(255, 255, 255, 0.5);
+    --text-faint: rgba(255, 255, 255, 0.32);
+    --heading: #6BB6D8;        // lighter Cerulean for readability on dark
     --border: rgba(255, 255, 255, 0.08);
     --border-strong: rgba(255, 255, 255, 0.14);
     --chip: rgba(255, 255, 255, 0.07);
     --chip-hover: rgba(255, 255, 255, 0.12);
     --tabbar-bg: rgba(22, 22, 26, 0.92);
     --tabbar-grad: linear-gradient(180deg, rgba(10, 10, 12, 0) 0%, rgba(10, 10, 12, 0.9) 50%, rgba(10, 10, 12, 1) 100%);
-    --tab-active-bg: rgba(229, 53, 43, 0.15);
-    --tab-inactive: rgba(255, 255, 255, 0.45);
+    --tab-active-bg: rgba(240, 50, 40, 0.18);
+    --tab-inactive: rgba(255, 255, 255, 0.5);
     --fab-bg: rgba(10, 10, 12, 0.82);
     --fab-border: rgba(255, 255, 255, 0.14);
     --shadow-fab: 0 6px 20px rgba(0, 0, 0, 0.5);
     --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    --shadow-accent: 0 8px 24px rgba(240, 50, 40, 0.35);
     --toast-bg: rgba(22, 22, 26, 0.92);
     --toast-border: rgba(255, 255, 255, 0.12);
     --lang-badge-border: #0A0A0C;
@@ -86,37 +122,55 @@ body {
     --grid-line: rgba(255, 255, 255, 0.04);
     --filter-chip-inactive-bg: rgba(255, 255, 255, 0.06);
     --filter-chip-inactive-text: rgba(255, 255, 255, 0.7);
+    --info-soft: rgba(227, 181, 5, 0.16);
+    --info-soft-border: rgba(227, 181, 5, 0.4);
+    --accent-soft: rgba(240, 50, 40, 0.15);
+    --accent-soft-border: rgba(240, 50, 40, 0.32);
+    --dashed-border: rgba(255, 255, 255, 0.12);
+    --empty-bg: rgba(255, 255, 255, 0.04);
   }
 
   &[data-theme='light'] {
-    --bg: #F6F5F1;
+    --bg: #{m.$base};
     --surface: #ffffff;
     --surface-2: rgba(255, 255, 255, 0.96);
-    --text: #0A0A0C;
-    --text-dim: rgba(10, 10, 12, 0.7);
-    --text-mute: rgba(10, 10, 12, 0.52);
-    --text-faint: rgba(10, 10, 12, 0.35);
-    --border: rgba(10, 10, 12, 0.08);
-    --border-strong: rgba(10, 10, 12, 0.14);
-    --chip: rgba(10, 10, 12, 0.05);
-    --chip-hover: rgba(10, 10, 12, 0.1);
-    --tabbar-bg: rgba(255, 255, 255, 0.92);
-    --tabbar-grad: linear-gradient(180deg, rgba(246, 245, 241, 0) 0%, rgba(246, 245, 241, 0.9) 50%, rgba(246, 245, 241, 1) 100%);
-    --tab-active-bg: rgba(229, 53, 43, 0.12);
-    --tab-inactive: rgba(10, 10, 12, 0.45);
-    --fab-bg: rgba(255, 255, 255, 0.92);
-    --fab-border: rgba(10, 10, 12, 0.12);
-    --shadow-fab: 0 6px 20px rgba(0, 0, 0, 0.14);
-    --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(10, 10, 12, 0.06);
+    --text: #{m.$primary};
+    --text-dim: rgba(0, 0, 0, 0.72);
+    --text-mute: rgba(0, 0, 0, 0.55);
+    --text-faint: rgba(0, 0, 0, 0.36);
+    --heading: #{m.$secondary};
+    --border: rgba(0, 0, 0, 0.1);
+    --border-strong: rgba(0, 0, 0, 0.16);
+    --chip: rgba(0, 0, 0, 0.05);
+    --chip-hover: rgba(0, 0, 0, 0.1);
+    --tabbar-bg: rgba(255, 255, 255, 0.95);
+    --tabbar-grad: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.9) 50%, rgba(255, 255, 255, 1) 100%);
+    --tab-active-bg: rgba(240, 50, 40, 0.12);
+    --tab-inactive: rgba(0, 0, 0, 0.5);
+    --fab-bg: rgba(255, 255, 255, 0.95);
+    --fab-border: rgba(0, 0, 0, 0.12);
+    --shadow-fab: 0 6px 20px rgba(0, 0, 0, 0.12);
+    --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+    --shadow-accent: 0 8px 24px rgba(240, 50, 40, 0.25);
     --toast-bg: rgba(255, 255, 255, 0.96);
-    --toast-border: rgba(10, 10, 12, 0.1);
-    --lang-badge-border: #F6F5F1;
+    --toast-border: rgba(0, 0, 0, 0.1);
+    --lang-badge-border: #{m.$base};
     --legend-card: #ffffff;
-    --input: rgba(10, 10, 12, 0.05);
-    --input-border: rgba(10, 10, 12, 0.1);
-    --grid-line: rgba(10, 10, 12, 0.06);
-    --filter-chip-inactive-bg: rgba(10, 10, 12, 0.06);
-    --filter-chip-inactive-text: rgba(10, 10, 12, 0.7);
+    --input: rgba(0, 0, 0, 0.05);
+    --input-border: rgba(0, 0, 0, 0.1);
+    --grid-line: rgba(0, 0, 0, 0.06);
+    --filter-chip-inactive-bg: rgba(0, 0, 0, 0.05);
+    --filter-chip-inactive-text: rgba(0, 0, 0, 0.72);
+    --info-soft: rgba(227, 181, 5, 0.18);
+    --info-soft-border: rgba(227, 181, 5, 0.6);
+    --accent-soft: rgba(240, 50, 40, 0.12);
+    --accent-soft-border: rgba(240, 50, 40, 0.3);
+    --dashed-border: rgba(0, 0, 0, 0.18);
+    --empty-bg: rgba(0, 0, 0, 0.03);
+    // Light-mode-specific: warm tint on the lineup schema so white blocks pop.
+    --lineup-schema-bg: #F1ECE2;
+    --lineup-block-bg: #ffffff;
+    --lineup-block-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
 
     // Light-mode tweaks: themed SVGs get dark strokes
     svg[data-themed='stroke'] {
@@ -125,7 +179,7 @@ body {
       ellipse,
       line,
       rect {
-        stroke: rgba(10, 10, 12, 0.82) !important;
+        stroke: rgba(0, 0, 0, 0.82) !important;
       }
     }
   }
@@ -143,16 +197,16 @@ body {
 
   &__title {
     font-family: m.$font-display;
-    font-weight: 800;
+    font-weight: 700;
     font-size: clamp(28px, 9vw, 38px);
     letter-spacing: -1px;
-    color: var(--text);
+    color: var(--heading);
   }
 
   &__subtitle {
     @include m.body(13px);
     color: var(--text-mute);
-    margin-top: 2px;
+    margin-top: 4px;
   }
 }
 
@@ -168,17 +222,23 @@ body {
   }
 
   &__title {
-    @include m.display(20px, 800, -0.3px);
-    color: var(--text);
+    @include m.display(20px, 700, -0.3px);
+    color: var(--heading);
     white-space: nowrap;
   }
 
   &__action {
-    @include m.display(13px, 600);
-    color: m.$accent;
+    @include m.button-text(13px);
+    color: var(--accent);
     cursor: pointer;
+    transition: opacity 0.15s ease;
+
+    &:hover { opacity: 0.75; }
+    &:active { opacity: 0.6; }
   }
 }
+
+// -------------------- Animations --------------------
 
 @keyframes toastIn {
   from {
@@ -199,5 +259,43 @@ body {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes screenIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.995);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulseRing {
+  0%   { box-shadow: 0 0 0 0 rgba(240, 50, 40, 0.5); }
+  70%  { box-shadow: 0 0 0 10px rgba(240, 50, 40, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(240, 50, 40, 0); }
+}
+
+// Page transition wrapper — keyed on the route path.
+.page-transition {
+  animation: screenIn 0.36s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+// Honour reduced-motion preferences.
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

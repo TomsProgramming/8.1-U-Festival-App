@@ -167,7 +167,7 @@ export default function Lineup() {
       </div>
 
       <div className="lineup__legend">
-        {Icons.bell('#E5352B', 16)}
+        {Icons.bell('var(--info)', 18)}
         <div className="lineup__legend-text">
           {lang === 'nl'
             ? 'Tik het hart om een act te volgen. Je krijgt een melding 15, 10 en 5 min voor aanvang.'

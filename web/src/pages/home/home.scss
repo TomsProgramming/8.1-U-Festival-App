@@ -37,6 +37,8 @@
     align-items: center;
     justify-content: center;
     border: 1px solid rgba(255, 255, 255, 0.22);
+    color: #fff;
+    @include m.press-feedback;
   }
 
   &__hero-text {
@@ -48,14 +50,14 @@
   }
 
   &__eyebrow {
-    @include m.display(13px, 600, 2px);
+    @include m.display(13px, 700, 2px);
     color: m.$accent;
     text-transform: uppercase;
   }
 
   &__title {
     font-family: m.$font-display;
-    font-weight: 800;
+    font-weight: 700;
     font-size: clamp(40px, 13vw, 56px);
     letter-spacing: -1.5px;
     color: #fff;
@@ -77,12 +79,12 @@
   &__chip {
     padding: 6px 12px;
     border-radius: 999px;
-    background: var(--border-strong);
+    background: rgba(255, 255, 255, 0.14);
     backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     font-family: m.$font-body;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 400;
     color: #fff;
     letter-spacing: 0.2px;
   }
@@ -109,8 +111,8 @@
   &__favs-empty {
     padding: 20px;
     border-radius: 18px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px dashed rgba(255, 255, 255, 0.12);
+    background: var(--empty-bg);
+    border: 1px dashed var(--dashed-border);
     color: var(--text-mute);
     @include m.body(14px);
     text-align: center;
@@ -128,6 +130,9 @@
     width: 120px;
     flex-shrink: 0;
     cursor: pointer;
+    transition: transform 0.18s ease;
+
+    &:active { transform: scale(0.96); }
   }
 
   &__fav-img {
@@ -145,6 +150,7 @@
     line-height: 1.1;
   }
 
+  // Golden-GLU promo block — Saffron per the guideline (info / waarschuwing).
   &__glu-wrap {
     padding: 0 20px;
     margin-top: 28px;
@@ -152,21 +158,22 @@
 
   &__glu {
     border-radius: 20px;
-    padding: 20px;
-    background: linear-gradient(135deg, m.$gold 0%, m.$gold-deep 100%);
+    padding: 22px;
+    background: linear-gradient(135deg, m.$info 0%, m.$info-deep 100%);
     color: #0A0A0C;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 8px 24px rgba(227, 181, 5, 0.28);
   }
 
   &__glu-eyebrow {
-    @include m.display(11px, 800, 2px);
+    @include m.display(11px, 700, 2px);
     text-transform: uppercase;
-    opacity: 0.6;
+    opacity: 0.7;
   }
 
   &__glu-title {
-    @include m.display(26px, 800, -0.5px);
+    @include m.display(26px, 700, -0.5px);
     line-height: 1.05;
     margin-top: 4px;
   }
@@ -174,7 +181,7 @@
   &__glu-sub {
     @include m.body(13px);
     margin-top: 6px;
-    opacity: 0.8;
+    opacity: 0.82;
     max-width: 240px;
   }
 
@@ -194,7 +201,7 @@
     bottom: 18px;
     font-family: m.$font-display;
     font-size: 32px;
-    font-weight: 800;
+    font-weight: 700;
   }
 }
 
@@ -206,6 +213,10 @@
   overflow: hidden;
   position: relative;
   cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  box-shadow: var(--shadow-card);
+
+  &:active { transform: scale(0.98); }
 
   &__img {
     height: 140px;
@@ -217,7 +228,7 @@
   &__img-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(23, 23, 26, 0.95) 100%);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.85) 100%);
   }
 
   &__stage-pill {
@@ -250,14 +261,16 @@
     border: 0;
     cursor: pointer;
     padding: 0;
+    color: #fff;
+    @include m.press-feedback;
   }
 
   &__body {
-    padding: 10px 14px 14px;
+    padding: 12px 14px 14px;
   }
 
   &__name {
-    @include m.display(16px, 800);
+    @include m.display(16px, 700);
     color: var(--text);
     line-height: 1.1;
   }
@@ -277,6 +290,9 @@
   cursor: pointer;
   background-position: center;
   background-size: cover;
+  transition: transform 0.18s ease;
+
+  &:active { transform: scale(0.99); }
 
   &__overlay {
     position: absolute;
@@ -307,7 +323,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    @include m.display(13px, 800);
+    @include m.display(13px, 700);
 
     &.is-light {
       color: #000;
@@ -315,13 +331,13 @@
   }
 
   &__name {
-    @include m.display(22px, 800, -0.3px);
-    color: var(--text);
+    @include m.display(22px, 700, -0.3px);
+    color: #fff;
   }
 
   &__desc {
     @include m.body(12px);
-    color: var(--text-dim);
+    color: rgba(255, 255, 255, 0.82);
     max-width: 260px;
     line-height: 1.3;
   }

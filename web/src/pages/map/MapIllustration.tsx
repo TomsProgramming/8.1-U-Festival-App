@@ -93,9 +93,9 @@ export function MapIllustration() {
       <g transform="translate(210 295)">
         <ellipse cx="0" cy="10" rx="75" ry="14" fill="rgba(0,0,0,0.25)" />
         <rect x="-62" y="-30" width="124" height="40" rx="6" fill="#8B2218" />
-        <rect x="-62" y="-30" width="124" height="14" rx="3" fill="#E5352B" />
+        <rect x="-62" y="-30" width="124" height="14" rx="3" fill="#F03228" />
         <path d="M -55 -30 L -35 -68 L 35 -68 L 55 -30 Z" fill="#B02820" />
-        <path d="M -35 -68 L 35 -68 L 0 -90 Z" fill="#E5352B" />
+        <path d="M -35 -68 L 35 -68 L 0 -90 Z" fill="#F03228" />
         <rect x="-56" y="-22" width="112" height="3" fill="#5A1410" />
       </g>
 
@@ -104,8 +104,8 @@ export function MapIllustration() {
         <ellipse cx="0" cy="22" rx="85" ry="10" fill="rgba(0,30,50,0.35)" />
         <rect x="-70" y="-6" width="140" height="24" rx="4" fill="#6B3F1E" />
         <rect x="-70" y="-6" width="140" height="6" fill="#8B5A2B" />
-        <rect x="-55" y="-32" width="110" height="28" rx="4" fill="#E5352B" />
-        <rect x="-55" y="-32" width="110" height="8" fill="#FFC93C" />
+        <rect x="-55" y="-32" width="110" height="28" rx="4" fill="#F03228" />
+        <rect x="-55" y="-32" width="110" height="8" fill="#E3B505" />
         <rect x="-60" y="20" width="15" height="8" fill="#4A2A11" />
         <rect x="45" y="20" width="15" height="8" fill="#4A2A11" />
       </g>
@@ -195,7 +195,7 @@ export function MapIllustration() {
 
       <g transform="translate(720, 95)">
         <circle r="28" fill="rgba(0,0,0,0.45)" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5" />
-        <path d="M 0 -18 L 6 0 L 0 18 L -6 0 Z" fill="#E5352B" />
+        <path d="M 0 -18 L 6 0 L 0 18 L -6 0 Z" fill="#F03228" />
         <path d="M 0 -18 L 6 0 L 0 0 Z" fill="#fff" />
         <text x="0" y="-20" textAnchor="middle" fontFamily="Space Grotesk, sans-serif" fontWeight="800" fontSize="10" fill="#fff">
           N

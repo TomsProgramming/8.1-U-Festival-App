@@ -100,5 +100,46 @@ Per gebruik noteer ik:
 - **Model:** Claude Opus 4.7
 - **Prompt:**
   > Bij mijn opdracht staat dat ik al mijn AI-gebruik in een md-bestand moet zetten. Kan je dit AI-logboek voor mij opzetten en invullen met mijn prompts, tijden en datums?
-  
+
+#### Entry 11
+- **Datum/tijd:** 17 mei 2025, 13:58
+- **Tool:** Claude Code
+- **Model:** Opus 4.7
+- **Prompt:**
+  > Kan je zorgen dat het design volledig aan de onderstaande guidelines voldoet en het design er ook nog mooi uitziet
+  >
+  > Design guidelines:
+  > - Lettertype: Sansation (Google Fonts)
+  > - Koppen: Bold 700
+  > - Leesteksten: Regular 400
+  > - Knoppen: Light 300 Italic
+  > - Accent: #F03228 (Vermilion) — knoppen/interactie
+  > - Base: #FFFFFF (White)
+  > - Primary: #000000 (Black)
+  > - Secondary: #247BA0 (Cerulean) — kopteksten
+  > - Info: #E3B505 (Saffron) — info/waarschuwingen
+  > - Icons: Material Symbols
+  > - Logo's: zwart + wit versie (staan in Notion)
+  > - Animatie: bij schermwisselingen en interactie
+
+#### Entry 12
+- **Datum/tijd:** 17 mei 2025, 14:30
+- **Tool:** Claude Code
+- **Model:** Opus 4.7
+- **Prompt:**
+  > Kan je fixen dat de talen vlaggen helemaal goed kloppen in het talen switch menu. Zorg ook dat als ik op een artietst heb gedrukt in de lineup en die heb een hart heb gegeven niet de knop volledig rood is maar dat je ziet dat je die followed
+
+#### Entry 13
+- **Datum/tijd:** 17 mei 2025, 14:36
+- **Tool:** Claude Code
+- **Model:** Opus 4.7
+- **Prompt:**
+  > De engelse vlag vind ik nog niet heel goed fix die helemaal. In light mode is de text van de artiest in de lineup en dan de detail niet heel goed te lezen fix dat ook helemaal
+
+#### Entry 14
+- **Datum/tijd:** 17 mei 2025, 15:00
+- **Tool:** Claude Code
+- **Model:** Opus 4.7
+- **Prompt:**
+  > Ik wil er een PWA van maken kan je zorgen dat als de app op een telefoon word geopend dat er word gekeken ofdat het via een pwa is zo niet laat je precies voor dat apparaat zien hoe de pwa geinstalleerd moet worden zorg dat het volledig in de style van de hele website is. Kan je ook een manifast.json maken en die toevoegen met een app icoon zodat ik hem kan toevoegen aan mijn telefoon
 ---

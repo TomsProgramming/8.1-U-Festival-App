@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
 import { STAGES } from '../../data/festival';
 import { Icons } from '../../components/brand/Icons';
+import { MatIcon } from '../../components/brand/MatIcon';
 import { Pin } from '../../components/pin/Pin';
 import type { PinKind } from '../../components/pin/Pin';
 import { MapScrollArea, type ScrollAreaHandle } from './MapScrollArea';
@@ -64,13 +65,7 @@ export default function MapPage() {
             <div className="screen-header__subtitle">Strijkviertel · Utrecht</div>
           </div>
           <button type="button" className="map__fullscreen-btn" onClick={() => setFullscreen(!fullscreen)}>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-              {fullscreen ? (
-                <path d="M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-              ) : (
-                <path d="M3 9V3h6M21 9V3h-6M3 15v6h6M21 15v6h-6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-              )}
-            </svg>
+            <MatIcon name={fullscreen ? 'close_fullscreen' : 'open_in_full'} size={14} weight={500} />
             {fullscreen ? (lang === 'nl' ? 'Sluit' : 'Close') : lang === 'nl' ? 'Vol scherm' : 'Fullscreen'}
           </button>
         </div>
@@ -99,14 +94,14 @@ export default function MapPage() {
         />
 
         <div className="map__controls">
-          <button type="button" className="map__btn" onClick={() => handleRef.current?.zoom(1.15)}>
-            ＋
+          <button type="button" className="map__btn" onClick={() => handleRef.current?.zoom(1.15)} aria-label="Zoom in">
+            <MatIcon name="add" size={18} weight={600} color="#fff" />
           </button>
-          <button type="button" className="map__btn" onClick={() => handleRef.current?.zoom(1 / 1.15)}>
-            −
+          <button type="button" className="map__btn" onClick={() => handleRef.current?.zoom(1 / 1.15)} aria-label="Zoom out">
+            <MatIcon name="remove" size={18} weight={600} color="#fff" />
           </button>
-          <button type="button" className="map__btn" onClick={() => handleRef.current?.recenter()}>
-            ◎
+          <button type="button" className="map__btn" onClick={() => handleRef.current?.recenter()} aria-label="Recenter">
+            <MatIcon name="my_location" size={18} weight={500} color="#fff" />
           </button>
         </div>
 
@@ -161,10 +156,7 @@ export default function MapPage() {
 
       <div className="map__lost">
         <div className="map__lost-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-            <path d="M12 22s8-6 8-12a8 8 0 0 0-16 0c0 6 8 12 8 12z" stroke="#fff" strokeWidth="2" />
-            <circle cx="12" cy="10" r="2.5" stroke="#fff" strokeWidth="2" />
-          </svg>
+          <MatIcon name="emergency_home" size={22} weight={500} color="#fff" />
         </div>
         <div>
           <div className="map__lost-title">{lang === 'nl' ? 'Verdwaald?' : 'Lost?'}</div>

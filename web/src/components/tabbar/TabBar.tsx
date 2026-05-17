@@ -1,21 +1,28 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
-import { Icons } from '../brand/Icons';
+import { MatIcon } from '../brand/MatIcon';
 import './tabbar.scss';
 
 type TabId = 'home' | 'lineup' | 'map' | 'favs' | 'info';
+
+interface TabDef {
+  id: TabId;
+  to: string;
+  label: string;
+  icon: string;
+}
 
 export function TabBar() {
   const { t, favorites } = useApp();
   const location = useLocation();
   const pathTab = (location.pathname.replace(/^\/+/, '') || 'home') as TabId;
 
-  const tabs: { id: TabId; to: string; label: string; render: (active: boolean) => React.ReactNode }[] = [
-    { id: 'home', to: '/home', label: t.home, render: (a) => Icons.home(a ? '#E5352B' : 'var(--tab-inactive)') },
-    { id: 'lineup', to: '/lineup', label: t.lineup, render: (a) => Icons.lineup(a ? '#E5352B' : 'var(--tab-inactive)') },
-    { id: 'map', to: '/map', label: t.map, render: (a) => Icons.map(a ? '#E5352B' : 'var(--tab-inactive)') },
-    { id: 'favs', to: '/favs', label: t.favs, render: (a) => Icons.favs(a ? '#E5352B' : 'var(--tab-inactive)', a) },
-    { id: 'info', to: '/info', label: t.info, render: (a) => Icons.info(a ? '#E5352B' : 'var(--tab-inactive)') },
+  const tabs: TabDef[] = [
+    { id: 'home', to: '/home', label: t.home, icon: 'home' },
+    { id: 'lineup', to: '/lineup', label: t.lineup, icon: 'queue_music' },
+    { id: 'map', to: '/map', label: t.map, icon: 'map' },
+    { id: 'favs', to: '/favs', label: t.favs, icon: 'favorite' },
+    { id: 'info', to: '/info', label: t.info, icon: 'info' },
   ];
 
   return (
@@ -30,7 +37,13 @@ export function TabBar() {
               className={`tabbar__item ${active ? 'is-active' : ''}`}
             >
               {active && <span className="tabbar__indicator" />}
-              {tab.render(active)}
+              <MatIcon
+                name={tab.icon}
+                size={22}
+                filled={active}
+                weight={active ? 500 : 400}
+                color={active ? 'var(--accent)' : 'var(--tab-inactive)'}
+              />
               <span className="tabbar__label">{tab.label}</span>
               {tab.id === 'favs' && favorites.length > 0 && (
                 <span className="tabbar__badge">{favorites.length}</span>

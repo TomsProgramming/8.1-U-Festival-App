@@ -9,24 +9,25 @@
     margin: 20px;
     padding: 40px 20px;
     border-radius: 18px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px dashed rgba(255, 255, 255, 0.1);
+    background: var(--empty-bg);
+    border: 1px dashed var(--dashed-border);
     text-align: center;
   }
 
   &__empty-heart {
     font-size: 40px;
     margin-bottom: 8px;
+    color: var(--accent);
   }
 
   &__empty-title {
     @include m.display(16px, 700);
-    color: var(--text-dim);
+    color: var(--heading);
   }
 
   &__empty-text {
     @include m.body(13px);
-    color: var(--text-faint);
+    color: var(--text-mute);
     margin: 6px auto 0;
     max-width: 240px;
     line-height: 1.4;
@@ -47,6 +48,10 @@
     border-radius: 16px;
     border: 1px solid var(--border);
     cursor: pointer;
+    transition: transform 0.18s ease, border-color 0.2s ease;
+
+    &:active { transform: scale(0.98); }
+    &:hover { border-color: var(--accent-soft-border); }
   }
 
   &__img {
@@ -63,7 +68,7 @@
   }
 
   &__name {
-    @include m.display(16px, 800);
+    @include m.display(16px, 700);
     color: var(--text);
   }
 
@@ -84,7 +89,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    @include m.display(11px, 500);
+    @include m.body(11px);
     color: var(--text-dim);
   }
 
@@ -103,10 +108,10 @@
   }
 
   &__heart {
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     border-radius: 999px;
-    background: rgba(229, 53, 43, 0.15);
+    background: var(--accent-soft);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -114,5 +119,7 @@
     border: 0;
     cursor: pointer;
     padding: 0;
+    color: var(--accent);
+    @include m.press-feedback;
   }
 }

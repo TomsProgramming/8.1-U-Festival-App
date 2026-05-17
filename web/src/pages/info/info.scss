@@ -11,27 +11,28 @@
 
   &__contact {
     border-radius: 20px;
-    padding: 20px;
+    padding: 22px 20px;
     background: linear-gradient(135deg, m.$accent 0%, m.$accent-deep 100%);
     color: #fff;
     position: relative;
     overflow: hidden;
+    box-shadow: var(--shadow-accent);
   }
 
   &__contact-eyebrow {
-    @include m.display(11px, 500, 2px);
+    @include m.display(11px, 700, 2px);
     text-transform: uppercase;
-    opacity: 0.7;
+    opacity: 0.85;
   }
 
   &__contact-title {
-    @include m.display(30px, 800, -1px);
+    @include m.display(30px, 700, -1px);
     line-height: 1;
     margin-top: 6px;
   }
 
   &__contact-rows {
-    margin-top: 14px;
+    margin-top: 16px;
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -43,8 +44,8 @@
     top: -30px;
     font-size: 200px;
     font-family: m.$font-display;
-    font-weight: 800;
-    opacity: 0.08;
+    font-weight: 700;
+    opacity: 0.1;
   }
 
   &__row {
@@ -56,13 +57,13 @@
 
   &__row-k {
     width: 70px;
-    color: var(--text-dim);
-    font-weight: 600;
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 400;
   }
 
   &__row-v {
     color: #fff;
-    font-weight: 600;
+    font-weight: 700;
   }
 
   &__reach {
@@ -79,17 +80,28 @@
     background: var(--surface);
     border-radius: 14px;
     border: 1px solid var(--border);
+    align-items: center;
+    transition: transform 0.18s ease, border-color 0.18s ease;
+
+    &:hover {
+      border-color: var(--accent-soft-border);
+    }
   }
 
   &__reach-icon {
-    font-size: 26px;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: var(--accent-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
-    line-height: 1;
   }
 
   &__reach-title {
     @include m.display(14px, 700);
-    color: var(--text);
+    color: var(--heading);
   }
 
   &__reach-desc {
@@ -103,14 +115,28 @@
     padding: 0 16px;
   }
 
+  // Lockers note is informational — use Saffron treatment per guideline.
   &__lockers {
-    background: var(--surface);
+    background: var(--info-soft);
     border-radius: 14px;
-    padding: 16px;
-    border: 1px solid var(--border);
+    padding: 16px 16px 16px 48px;
+    border: 1px solid var(--info-soft-border);
     @include m.body(13px);
-    color: var(--text-dim);
+    color: var(--text);
     line-height: 1.5;
+    position: relative;
+
+    &::before {
+      content: 'info';
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      font-family: 'Material Symbols Rounded';
+      font-size: 22px;
+      color: var(--info);
+      font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+      line-height: 1;
+    }
   }
 
   &__faqs {
@@ -125,6 +151,11 @@
     border-radius: 14px;
     border: 1px solid var(--border);
     overflow: hidden;
+    transition: border-color 0.2s ease;
+
+    &.is-open {
+      border-color: var(--accent-soft-border);
+    }
   }
 
   &__faq-head {
@@ -137,19 +168,22 @@
     background: transparent;
     border: 0;
     text-align: left;
+    font-style: normal;
+    font-weight: 400;
   }
 
   &__faq-q {
     flex: 1;
-    @include m.display(14px, 600);
+    @include m.display(14px, 700);
     color: var(--text);
   }
 
   &__faq-chev {
-    transition: transform 0.2s;
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    display: inline-flex;
 
     &.is-open {
-      transform: rotate(90deg);
+      transform: rotate(180deg);
     }
   }
 
@@ -158,5 +192,6 @@
     @include m.body(13px);
     color: var(--text-dim);
     line-height: 1.5;
+    animation: slideUp 0.22s ease-out;
   }
 }

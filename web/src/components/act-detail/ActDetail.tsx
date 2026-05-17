@@ -79,7 +79,7 @@ export function ActDetail() {
                   {formatHour(s.start)} – {formatHour(s.end)} · {((s.end - s.start) * 60).toFixed(0)} {t.min}
                 </div>
               </div>
-              {fav && Icons.bell('#E5352B', 18)}
+              {fav && Icons.bell('var(--accent)', 18)}
             </div>
           ))}
         </div>

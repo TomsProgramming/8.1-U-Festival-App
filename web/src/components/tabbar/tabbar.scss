@@ -18,6 +18,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   }
 
   &__item {
@@ -33,12 +34,17 @@
     background: transparent;
     text-decoration: none;
     color: inherit;
+    transition: background 0.22s ease, transform 0.18s ease;
+
+    &:active { transform: scale(0.94); }
 
     &.is-active {
       background: var(--tab-active-bg);
 
       .tabbar__label {
-        color: var(--text);
+        color: var(--accent);
+        font-style: normal;
+        font-weight: 700;
       }
     }
   }
@@ -51,26 +57,33 @@
     width: 20px;
     height: 3px;
     border-radius: 999px;
-    background: m.$accent;
+    background: var(--accent);
+    animation: fadeIn 0.25s ease;
   }
 
   &__label {
-    @include m.display(9.5px, 700, 0.2px);
+    @include m.button-text(10px);
     color: var(--tab-inactive);
+    letter-spacing: 0.2px;
   }
 
   &__badge {
     position: absolute;
     top: 2px;
     right: 12px;
-    width: 14px;
-    height: 14px;
+    min-width: 16px;
+    height: 16px;
     border-radius: 999px;
-    background: m.$accent;
+    background: var(--accent);
     color: #fff;
-    @include m.display(9px, 800, 0);
+    font-family: m.$font-display;
+    font-size: 9px;
+    font-weight: 700;
+    font-style: normal;
+    padding: 0 4px;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 2px 6px rgba(240, 50, 40, 0.4);
   }
 }
