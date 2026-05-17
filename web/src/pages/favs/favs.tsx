@@ -1,5 +1,5 @@
 import { useApp } from '../../context/AppContext';
-import { ACTS, SCHEDULE, STAGES, formatHour, type DayId, type Stage } from '../../data/festival';
+import { formatHour, type DayId, type Stage } from '../../data/festival';
 import { Icons } from '../../components/brand/Icons';
 import './favs.scss';
 
@@ -11,15 +11,15 @@ interface ShowTime {
 }
 
 export default function Favs() {
-  const { t, lang, favorites, toggleFav, showActDetail } = useApp();
-  const favActs = favorites.map((id) => ACTS.find((a) => a.id === id)).filter((a): a is NonNullable<typeof a> => Boolean(a));
+  const { t, lang, favorites, toggleFav, showActDetail, stages, acts, schedule } = useApp();
+  const favActs = favorites.map((id) => acts.find((a) => a.id === id)).filter((a): a is NonNullable<typeof a> => Boolean(a));
 
   const scheduleFor = (id: string): ShowTime[] => {
     const res: ShowTime[] = [];
     for (const day of ['saturday', 'sunday'] as DayId[]) {
-      for (const s of SCHEDULE[day]) {
+      for (const s of schedule[day]) {
         if (s.actId === id) {
-          const stage = STAGES.find((st) => st.id === s.stageId);
+          const stage = stages.find((st) => st.id === s.stageId);
           if (stage) res.push({ day, start: s.start, end: s.end, stage });
         }
       }

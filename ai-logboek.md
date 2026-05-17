@@ -142,4 +142,72 @@ Per gebruik noteer ik:
 - **Model:** Opus 4.7
 - **Prompt:**
   > Ik wil er een PWA van maken kan je zorgen dat als de app op een telefoon word geopend dat er word gekeken ofdat het via een pwa is zo niet laat je precies voor dat apparaat zien hoe de pwa geinstalleerd moet worden zorg dat het volledig in de style van de hele website is. Kan je ook een manifast.json maken en die toevoegen met een app icoon zodat ik hem kan toevoegen aan mijn telefoon
+
+#### Entry 15
+- **Datum/tijd:** 17 mei 2025, 21:47
+- **Tool:** Claude Code
+- **Model:** Opus 4.7
+- **Prompt:**
+  > Ik wil graag dat de data nu uit de database komt dus kan je een volledige mysql database maken voor alle data. Ik heb al een node js server aangemaakt. Dan wil ik nog dat de eisen hier onder verwerkt worden
+  > 
+  > De app wordt een week voor aanvang van het festival gelanceerd en kan worden geopend door een QR-code te scannen. Daarna kan de app worden geïnstalleerd.
+  > In je eindproduct houdt je rekening met de mogelijkheden van een PWA zoals:
+  > 
+  > - Installeren op het startscherm
+  > - Push-meldingen
+  > - Offline werken (caching)
+
+#### Entry 16
+- **Datum/tijd:** 17 mei 2025, 22:01
+- **Tool:** Claude Code
+- **Model:** Opus 4.7
+- **Prompt:**
+  > Oke ik heb een paar problemen Hij vraagd volgens mij nergens om push notificaties permissions dus kan die ze niet versutren. Als ik offline ga worden de icoontjes in de nav enzo niet meer ingeladen kan je dat ook fixen. En als ik offline ga en ik like iets word dat dan later gesynct naar de server? Ook in de data is er geen ai gebruikt en geen relaties tussen tables zorg dat de ids altijd nummers zijn met ai
+
+#### Entry 17
+- **Datum/tijd:** 17 mei 2025, 22:10
+- **Tool:** Claude Code
+- **Model:** Opus 4.7
+- **Prompt:**
+  > Perfect kan je nog zorgen dat er standaard geen artietsen in favorieten staan nu staan er standaard 2 in
+
+#### Entry 18
+- **Datum/tijd:** 17 mei 2025, 22:17
+- **Tool:** Claude Code
+- **Model:** Opus 4.7
+- **Prompt:**
+  > Perfect bij elke act kan je een clip kijken zorg dat dat werkt met de data hier onder. Als de gebruiker offline is geef dan een nette melding dat de video niet zonder internet/wifi bekeken kan worden
+  > 
+  > **Armin van Buuren**
+  > https://www.youtube.com/watch?v=TxvpctgU_s8
+  > 
+  > **Martin Garrix**
+  > https://www.youtube.com/watch?v=Zv1QV6lrc_Y
+  > 
+  > **Kensington**
+  > https://www.youtube.com/watch?v=IH77eOyV95o
+  > 
+  > **Within Temptation**
+  > https://www.youtube.com/watch?v=iQVei5C2N4E
+  > 
+  > **De Staat**
+  > https://www.youtube.com/watch?v=0ttGgIQpAUc
+  > 
+  > **Chef’Special**
+  > https://www.youtube.com/watch?v=l3jRIr44lss
+  > 
+  > **Navarone**
+  > https://www.youtube.com/watch?v=EvLpaCSnc4k
+  > 
+  > **Dotan**
+  > https://www.youtube.com/watch?v=FZEuqzW16Nw
+  > 
+  > **Eefje de Visser**
+  > https://www.youtube.com/watch?v=6IlLJNmLDMg
+  > 
+  > **Froukje**
+  > https://www.youtube.com/watch?v=g4PlReX9e-E
+  > 
+  > **Spinvis**
+  > https://www.youtube.com/watch?v=F3ZTrGWSLf4
 ---

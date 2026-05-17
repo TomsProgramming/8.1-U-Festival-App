@@ -158,6 +158,26 @@
     margin: 0;
   }
 
+  &__ai {
+    margin-top: 18px;
+    padding: 14px 14px 16px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border-left: 3px solid var(--accent);
+  }
+  &__ai-eyebrow {
+    @include m.display(10px, 700, 2px);
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  &__ai-text {
+    margin: 0;
+    @include m.body(14px);
+    color: var(--text);
+    line-height: 1.55;
+  }
+
   &__cta {
     margin-top: 22px;
     display: flex;

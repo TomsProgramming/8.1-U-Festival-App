@@ -1,75 +1,67 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import { MatIcon } from '../../components/brand/MatIcon';
 import { Section } from '../../components/section/Section';
+import { api } from '../../data/api';
 import './info.scss';
 
+interface ReachItem { icon: string; title: string; desc: string; }
+interface Faq { q: string; a: string; }
+
 export default function Info() {
-  const { t, lang } = useApp();
+  const {
+    t, lang,
+    pushSupported, pushPermission, pushOn,
+    enableNotifications, disableNotifications,
+    deviceId,
+    online, pendingSync,
+  } = useApp();
 
-  const faqs =
-    lang === 'nl'
-      ? [
-          {
-            q: 'Ik gebruik medicatie. Wat nu?',
-            a: 'Neem je medicatie mee in de originele verpakking en zorg dat er niet meer dan nodig voor 1 dag op het terrein is. Bij twijfel: vraag onze EHBO-post om mee te helpen.',
-          },
-          {
-            q: 'Mag ik het festivalterrein tussentijds verlaten?',
-            a: 'Helaas niet. Om de veiligheid te waarborgen kun je alleen met een vip-pas heen en weer. We zorgen voor genoeg toiletten, eten en drinken binnen.',
-          },
-          {
-            q: 'Zijn er lockers?',
-            a: 'Ja, bij de ingang vind je kleine, middel en grote lockers. Je kunt ze de hele dag openen en sluiten met je wristband.',
-          },
-          {
-            q: 'Kan ik pinnen aan de bar?',
-            a: 'Zeker. Het hele terrein is cashless — wij accepteren alleen pin en contactless.',
-          },
-          {
-            q: 'Hoe laat begint het festival?',
-            a: 'Zaterdag 5 september om 12:00 uur. Programma loopt tot 03:00 uur.',
-          },
-        ]
-      : [
-          {
-            q: 'I need to take medication. What now?',
-            a: "Bring it in its original packaging and keep no more than one day's supply on site. If in doubt, speak to our first-aid team.",
-          },
-          {
-            q: 'Can I leave the festival grounds mid-day?',
-            a: "Unfortunately not. For safety reasons only VIP passes allow re-entry. We'll make sure there's plenty of toilets, food and drinks inside.",
-          },
-          {
-            q: 'Are there lockers?',
-            a: 'Yes — small, medium and large lockers are available at the entrance. Open & close them all day with your wristband.',
-          },
-          { q: 'Can I pay with card?', a: 'Absolutely. The entire site is cashless — card and contactless only.' },
-          { q: 'What time does it start?', a: 'Saturday 5 September at 12:00. Programme runs until 03:00.' },
-        ];
+  const [faqs, setFaqs] = useState<Faq[]>([]);
+  const [reach, setReach] = useState<ReachItem[]>([]);
+  const [facts, setFacts] = useState<Record<string, string>>({});
 
-  const reach =
-    lang === 'nl'
-      ? [
-          { icon: 'directions_bike', title: 'Fiets', desc: 'Er is een grote gratis fietsenstalling waar je je fiets de hele dag kunt stallen.' },
-          { icon: 'directions_car', title: 'Auto', desc: 'In kaart zijn parkeerplekken aangeduid. Parkeren kan op P+R Papendorp, volg vanaf daar de borden.' },
-          { icon: 'train', title: 'OV', desc: 'Kom je met het openbaar vervoer naar Utrecht? Plan dan je trip via 9292.' },
-          { icon: 'directions_bus', title: 'Shuttlebus', desc: 'Vanaf Utrecht Centraal kun je een gratis shuttlebus nemen richting het festivalterrein.' },
-          { icon: 'local_taxi', title: 'Taxi + Kiss & Ride', desc: 'Navigeer naar Strijkviertel en volg de borden "Kiss & Ride" of de Taxi-borden.' },
-        ]
-      : [
-          { icon: 'directions_bike', title: 'Bike', desc: 'Big free bike parking where you can leave your bike all day.' },
-          { icon: 'directions_car', title: 'Car', desc: 'Parking is marked on the map. Park at P+R Papendorp and follow the signs.' },
-          { icon: 'train', title: 'Public transport', desc: 'Coming by train? Plan your journey with 9292.' },
-          { icon: 'directions_bus', title: 'Shuttle bus', desc: 'Free shuttle bus from Utrecht Central to the festival site.' },
-          { icon: 'local_taxi', title: 'Taxi + Kiss & Ride', desc: 'Navigate to Strijkviertel and follow the Kiss & Ride or Taxi signs.' },
-        ];
+  useEffect(() => {
+    let alive = true;
+    (async () => {
+      const [f, r, i] = await Promise.all([api.faqs(lang), api.reach(lang), api.info(lang)]);
+      if (!alive) return;
+      setFaqs(f);
+      setReach(r);
+      setFacts(i);
+    })();
+    return () => { alive = false; };
+  }, [lang]);
+
+  const address = facts.address || (lang === 'nl' ? 'Strijkviertelweg, Utrecht' : 'Strijkviertelweg, Utrecht');
+  const dateStr = facts.date    || (lang === 'nl' ? '5–6 september 2026' : '5–6 September 2026');
+  const timeStr = facts.time    || '12:00 – 03:00';
+  const lockers = facts.lockers || (lang === 'nl'
+    ? 'Op het festivalterrein zijn lockers aanwezig waar je je spullen veilig kunt opbergen. Klein €4 · Middel €6 · Groot €8.'
+    : 'Lockers are available on site to safely store your belongings. Small €4 · Medium €6 · Large €8.');
+
+  const onTestPush = async () => {
+    await api.sendTestPush(deviceId);
+  };
 
   return (
     <div className="info">
       <div className="screen-header">
         <div className="screen-header__title">{t.info}</div>
       </div>
+
+      {(!online || pendingSync > 0) && (
+        <div className="info__sync">
+          <MatIcon name={online ? 'cloud_sync' : 'cloud_off'} size={18} color="var(--accent)" weight={500} />
+          <span>
+            {!online
+              ? lang === 'nl' ? 'Offline — wijzigingen worden gesynct zodra je weer verbinding hebt.'
+                              : 'Offline — changes will sync once you reconnect.'
+              : lang === 'nl' ? `Syncen… ${pendingSync} wijziging${pendingSync === 1 ? '' : 'en'} in de wachtrij.`
+                              : `Syncing… ${pendingSync} change${pendingSync === 1 ? '' : 's'} queued.`}
+          </span>
+        </div>
+      )}
 
       <div className="info__contact-wrap">
         <div className="info__contact">
@@ -80,13 +72,60 @@ export default function Info() {
             2026
           </div>
           <div className="info__contact-rows">
-            <InfoRow k={lang === 'nl' ? 'Adres' : 'Address'} v="Strijkviertelweg, Utrecht" />
-            <InfoRow k={lang === 'nl' ? 'Datum' : 'Date'} v={lang === 'nl' ? '5–6 september 2026' : '5–6 September 2026'} />
-            <InfoRow k={lang === 'nl' ? 'Tijd' : 'Time'} v="12:00 – 03:00" />
+            <InfoRow k={lang === 'nl' ? 'Adres' : 'Address'} v={address} />
+            <InfoRow k={lang === 'nl' ? 'Datum' : 'Date'} v={dateStr} />
+            <InfoRow k={lang === 'nl' ? 'Tijd' : 'Time'} v={timeStr} />
           </div>
           <div className="info__contact-bg">❤</div>
         </div>
       </div>
+
+      {pushSupported && (
+        <Section title={lang === 'nl' ? 'Meldingen' : 'Notifications'}>
+          <div className="info__push">
+            <div className="info__push-icon">
+              <MatIcon name={pushOn ? 'notifications_active' : 'notifications'} size={22} color="var(--accent)" weight={500} />
+            </div>
+            <div className="info__push-body">
+              <div className="info__push-title">
+                {pushOn
+                  ? lang === 'nl' ? 'Meldingen staan aan' : 'Notifications are on'
+                  : lang === 'nl' ? 'Krijg meldingen voor je favorieten' : 'Get notifications for your favorites'}
+              </div>
+              <div className="info__push-text">
+                {pushPermission === 'denied'
+                  ? lang === 'nl'
+                    ? 'Meldingen zijn geblokkeerd in je browser. Zet ze aan in de browser-instellingen.'
+                    : 'Notifications are blocked in your browser. Enable them in browser settings.'
+                  : lang === 'nl'
+                    ? 'We sturen je 15, 10 en 5 minuten vóór elke favoriete act een melding.'
+                    : "We'll notify you 15, 10 and 5 minutes before each favorite act."}
+              </div>
+              <div className="info__push-actions">
+                {pushOn ? (
+                  <>
+                    <button type="button" className="info__push-btn is-ghost" onClick={disableNotifications}>
+                      {lang === 'nl' ? 'Uit' : 'Off'}
+                    </button>
+                    <button type="button" className="info__push-btn is-ghost" onClick={onTestPush}>
+                      {lang === 'nl' ? 'Test-melding' : 'Send test'}
+                    </button>
+                  </>
+                ) : (
+                  <button
+                    type="button"
+                    className="info__push-btn"
+                    disabled={pushPermission === 'denied'}
+                    onClick={enableNotifications}
+                  >
+                    {lang === 'nl' ? 'Zet aan' : 'Turn on'}
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        </Section>
+      )}
 
       <Section title={t.reach}>
         <div className="info__reach">
@@ -106,11 +145,7 @@ export default function Info() {
 
       <Section title={t.lockers_h}>
         <div className="info__lockers-wrap">
-          <div className="info__lockers">
-            {lang === 'nl'
-              ? 'Op het festivalterrein zijn lockers aanwezig waar je je spullen veilig kunt opbergen. Klein €4 · Middel €6 · Groot €8.'
-              : 'Lockers are available on site to safely store your belongings. Small €4 · Medium €6 · Large €8.'}
-          </div>
+          <div className="info__lockers">{lockers}</div>
         </div>
       </Section>
 

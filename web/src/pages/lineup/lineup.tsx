@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useApp } from '../../context/AppContext';
-import { ACTS, SCHEDULE, STAGES, formatHour, type DayId } from '../../data/festival';
+import { formatHour, type DayId } from '../../data/festival';
 import { Icons } from '../../components/brand/Icons';
 import './lineup.scss';
 
@@ -9,14 +9,14 @@ const HOUR_END = 26;
 const PX_PER_HOUR = 90;
 
 export default function Lineup() {
-  const { t, lang, favorites, toggleFav, showActDetail } = useApp();
+  const { t, lang, favorites, toggleFav, showActDetail, stages, acts, schedule } = useApp();
   const [day, setDay] = useState<DayId>('saturday');
   const scrollersRef = useRef<HTMLDivElement[]>([]);
 
   const hours = [];
   for (let h = HOUR_START; h <= HOUR_END; h++) hours.push(h);
 
-  const items = SCHEDULE[day];
+  const items = schedule[day];
   const nowH = 20.25;
   const showNow = day === 'saturday';
 
@@ -86,7 +86,7 @@ export default function Lineup() {
           </div>
         </div>
 
-        {STAGES.map((stage, idx) => {
+        {stages.map((stage, idx) => {
           const rowItems = items.filter((i) => i.stageId === stage.id);
           return (
             <div className="lineup__row" key={stage.id}>
@@ -94,7 +94,7 @@ export default function Lineup() {
                 <div className="lineup__row-bar" style={{ background: stage.color }} />
                 <div>
                   <div className="lineup__row-name">{stage.name}</div>
-                  <div className="lineup__row-sub">STAGE 0{STAGES.findIndex((s) => s.id === stage.id) + 1}</div>
+                  <div className="lineup__row-sub">STAGE 0{idx + 1}</div>
                 </div>
               </div>
               <div
@@ -117,7 +117,7 @@ export default function Lineup() {
                     </div>
                   )}
                   {rowItems.map((it, i) => {
-                    const act = ACTS.find((a) => a.id === it.actId);
+                    const act = acts.find((a) => a.id === it.actId);
                     if (!act) return null;
                     const fav = favorites.includes(act.id);
                     const isNow = showNow && it.start <= nowH && it.end > nowH;

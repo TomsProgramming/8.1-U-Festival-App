@@ -44,6 +44,11 @@ export interface Translation {
   genre: string;
   time: string;
   duration: string;
+  videoOfflineTitle: string;
+  videoOfflineText: string;
+  videoUnavailable: string;
+  videoOpenYouTube: string;
+  closeVideo: string;
   pwaTitle: string;
   pwaTagline: string;
   pwaWhyTitle: string;
@@ -107,6 +112,11 @@ export const I18N: Record<Lang, Translation> = {
     readMore: 'Lees meer',
     watchClip: 'Bekijk clip',
     stage: 'Podium', genre: 'Genre', time: 'Tijd', duration: 'Duur',
+    videoOfflineTitle: 'Geen internet',
+    videoOfflineText: 'Je hebt internet of wifi nodig om de clip te bekijken. Probeer het opnieuw zodra je weer verbinding hebt.',
+    videoUnavailable: 'Geen clip beschikbaar voor deze act.',
+    videoOpenYouTube: 'Open op YouTube',
+    closeVideo: 'Sluit',
     pwaTitle: 'Zet de festival-app op je beginscherm',
     pwaTagline: 'Open ❤U Festival sneller — als een echte app, zonder browserbalk.',
     pwaWhyTitle: 'Waarom installeren?',
@@ -168,6 +178,11 @@ export const I18N: Record<Lang, Translation> = {
     readMore: 'Read more',
     watchClip: 'Watch clip',
     stage: 'Stage', genre: 'Genre', time: 'Time', duration: 'Duration',
+    videoOfflineTitle: 'No internet',
+    videoOfflineText: "You need internet or Wi-Fi to watch the clip. Try again once you're back online.",
+    videoUnavailable: 'No clip available for this act.',
+    videoOpenYouTube: 'Open on YouTube',
+    closeVideo: 'Close',
     pwaTitle: 'Add the festival app to your home screen',
     pwaTagline: 'Open ❤U Festival faster — like a real app, no browser bar.',
     pwaWhyTitle: 'Why install?',

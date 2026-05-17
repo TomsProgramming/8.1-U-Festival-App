@@ -1,23 +1,24 @@
 import { useNavigate } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
-import { ACTS, SCHEDULE, STAGES, formatHour, type Stage, type ScheduleItem, type Act } from '../../data/festival';
+import { formatHour, type Stage, type ScheduleItem, type Act } from '../../data/festival';
 import { Icons } from '../../components/brand/Icons';
 import { Logo } from '../../components/brand/Logo';
 import { Section } from '../../components/section/Section';
 import './home.scss';
 
 export default function Home() {
-  const { t, lang, favorites, toggleFav, showActDetail } = useApp();
+  const { t, lang, favorites, toggleFav, showActDetail, stages, acts, schedule } = useApp();
   const navigate = useNavigate();
 
-  const upcoming = SCHEDULE.saturday
+  const upcoming = schedule.saturday
     .filter((s) => s.start >= 20 && s.start <= 24)
     .slice(0, 3)
     .map((s) => ({
       ...s,
-      act: ACTS.find((a) => a.id === s.actId)!,
-      stage: STAGES.find((st) => st.id === s.stageId)!,
-    }));
+      act: acts.find((a) => a.id === s.actId)!,
+      stage: stages.find((st) => st.id === s.stageId)!,
+    }))
+    .filter((u) => u.act && u.stage);
 
   return (
     <div className="home">
@@ -59,8 +60,8 @@ export default function Home() {
 
       <Section title={t.stagesHeader}>
         <div className="home__stages">
-          {STAGES.map((s) => (
-            <StageRow key={s.id} stage={s} lang={lang} onClick={() => navigate('/map')} />
+          {stages.map((s, i) => (
+            <StageRow key={s.id} stage={s} idx={i} lang={lang} onClick={() => navigate('/map')} />
           ))}
         </div>
       </Section>
@@ -76,7 +77,7 @@ export default function Home() {
           ) : (
             <div className="home__favs-row">
               {favorites.map((id) => {
-                const a = ACTS.find((x) => x.id === id);
+                const a = acts.find((x) => x.id === id);
                 if (!a) return null;
                 return (
                   <div key={id} className="home__fav-card" onClick={() => showActDetail(id)}>
@@ -157,8 +158,7 @@ function UpNextCard({
   );
 }
 
-function StageRow({ stage, lang, onClick }: { stage: Stage; lang: 'nl' | 'en'; onClick: () => void }) {
-  const idx = STAGES.findIndex((s) => s.id === stage.id);
+function StageRow({ stage, idx, lang, onClick }: { stage: Stage; idx: number; lang: 'nl' | 'en'; onClick: () => void }) {
   return (
     <div className="stagerow" onClick={onClick} style={{ backgroundImage: `url('${stage.img}')` }}>
       <div className="stagerow__overlay" />

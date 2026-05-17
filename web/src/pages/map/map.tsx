@@ -1,7 +1,6 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
-import { STAGES } from '../../data/festival';
 import { Icons } from '../../components/brand/Icons';
 import { MatIcon } from '../../components/brand/MatIcon';
 import { Pin } from '../../components/pin/Pin';
@@ -24,7 +23,7 @@ const CAPACITIES: Record<string, string> = {
 };
 
 export default function MapPage() {
-  const { t, lang } = useApp();
+  const { t, lang, stages } = useApp();
   const navigate = useNavigate();
   const [selected, setSelected] = useState<MapPin | null>(null);
   const [filter, setFilter] = useState('all');
@@ -54,7 +53,7 @@ export default function MapPage() {
       stage: lang === 'nl' ? 'Podium' : 'Stage',
     })[kind];
 
-  const stage = selected?.stageId ? STAGES.find((s) => s.id === selected.stageId) : null;
+  const stage = selected?.stageId ? stages.find((s) => s.id === selected.stageId) : null;
 
   return (
     <div className="map">
@@ -140,7 +139,7 @@ export default function MapPage() {
       <div className="map__legend-wrap">
         <div className="map__legend-title">{t.legend}</div>
         <div className="map__legend">
-          {STAGES.map((s, i) => (
+          {stages.map((s, i) => (
             <LegendRow key={s.id} label={s.name} sub={lang === 'nl' ? 'Podium' : 'Stage'} pin={<Pin kind="stage" num={i + 1} size={30} />} />
           ))}
           <LegendRow label={t.entrance} sub={lang === 'nl' ? 'In- en uitgang' : 'Entry & exit'} pin={<Pin kind="entrance" size={30} />} />

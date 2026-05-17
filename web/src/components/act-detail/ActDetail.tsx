@@ -1,21 +1,24 @@
+import { useState } from 'react';
 import { useApp } from '../../context/AppContext';
-import { ACTS, SCHEDULE, STAGES, formatHour, type DayId } from '../../data/festival';
+import { formatHour, type DayId, type Stage } from '../../data/festival';
 import { Icons } from '../brand/Icons';
+import { VideoModal } from '../video-modal/VideoModal';
 import './act-detail.scss';
 
 export function ActDetail() {
-  const { actDetail, showActDetail, favorites, toggleFav, lang, t } = useApp();
+  const { actDetail, showActDetail, favorites, toggleFav, lang, t, stages, acts, schedule } = useApp();
+  const [showVideo, setShowVideo] = useState(false);
   if (!actDetail) return null;
 
-  const act = ACTS.find((x) => x.id === actDetail);
+  const act = acts.find((x) => x.id === actDetail);
   if (!act) return null;
 
   const fav = favorites.includes(act.id);
-  const shows: { day: DayId; start: number; end: number; stage: (typeof STAGES)[number] }[] = [];
+  const shows: { day: DayId; start: number; end: number; stage: Stage }[] = [];
   for (const day of ['saturday', 'sunday'] as DayId[]) {
-    for (const s of SCHEDULE[day]) {
+    for (const s of schedule[day]) {
       if (s.actId === act.id) {
-        const stage = STAGES.find((st) => st.id === s.stageId);
+        const stage = stages.find((st) => st.id === s.stageId);
         if (stage) shows.push({ day, start: s.start, end: s.end, stage });
       }
     }
@@ -86,6 +89,17 @@ export function ActDetail() {
 
         <p className="act-detail__bio">{lang === 'nl' ? act.bioNL : act.bioEN}</p>
 
+        {(lang === 'nl' ? act.aiBlurbNL : act.aiBlurbEN) && (
+          <div className="act-detail__ai">
+            <div className="act-detail__ai-eyebrow">
+              {lang === 'nl' ? 'Geschreven met AI' : 'Written with AI'}
+            </div>
+            <p className="act-detail__ai-text">
+              {lang === 'nl' ? act.aiBlurbNL : act.aiBlurbEN}
+            </p>
+          </div>
+        )}
+
         <div className="act-detail__cta">
           <button
             type="button"
@@ -97,11 +111,23 @@ export function ActDetail() {
               ? lang === 'nl' ? 'Gevolgd' : 'Following'
               : lang === 'nl' ? 'Volg + meldingen' : 'Follow + notify'}
           </button>
-          <button type="button" className="act-detail__cta-secondary">
+          <button
+            type="button"
+            className="act-detail__cta-secondary"
+            onClick={() => setShowVideo(true)}
+          >
             ▶ {t.watchClip}
           </button>
         </div>
       </div>
+
+      {showVideo && (
+        <VideoModal
+          url={act.youtubeUrl}
+          title={act.name}
+          onClose={() => setShowVideo(false)}
+        />
+      )}
     </div>
   );
 }
