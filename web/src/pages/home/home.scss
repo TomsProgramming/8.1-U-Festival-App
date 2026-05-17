@@ -1,0 +1,328 @@
+@use '../../styles/mixins' as m;
+
+.home {
+  padding-bottom: 110px;
+
+  &__hero {
+    position: relative;
+    height: clamp(360px, 55vh, 460px);
+    background: url('/assets/ponton.png') center/cover no-repeat;
+    overflow: hidden;
+  }
+
+  &__hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.1) 40%, rgba(10, 10, 12, 0.95) 100%);
+  }
+
+  &__topbar {
+    position: absolute;
+    top: clamp(40px, 8vh, 64px);
+    left: 20px;
+    right: 20px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__bell {
+    width: 42px;
+    height: 42px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(14px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+  }
+
+  &__hero-text {
+    position: absolute;
+    bottom: 24px;
+    left: 20px;
+    right: 20px;
+    z-index: 2;
+  }
+
+  &__eyebrow {
+    @include m.display(13px, 600, 2px);
+    color: m.$accent;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    font-family: m.$font-display;
+    font-weight: 800;
+    font-size: clamp(40px, 13vw, 56px);
+    letter-spacing: -1.5px;
+    color: #fff;
+    line-height: 0.95;
+    margin-top: 6px;
+  }
+
+  &__title-accent {
+    color: m.$accent;
+  }
+
+  &__chips {
+    margin-top: 16px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  &__chip {
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--border-strong);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-family: m.$font-body;
+    font-size: 12px;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 0.2px;
+  }
+
+  &__upnext-row {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 0 20px 8px;
+    @include m.no-scrollbar;
+  }
+
+  &__stages {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 20px;
+  }
+
+  &__favs-wrap {
+    padding: 0 20px;
+  }
+
+  &__favs-empty {
+    padding: 20px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px dashed rgba(255, 255, 255, 0.12);
+    color: var(--text-mute);
+    @include m.body(14px);
+    text-align: center;
+  }
+
+  &__favs-row {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    @include m.no-scrollbar;
+  }
+
+  &__fav-card {
+    width: 120px;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  &__fav-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 14px;
+    object-fit: cover;
+    display: block;
+  }
+
+  &__fav-name {
+    @include m.display(13px, 700);
+    color: var(--text);
+    margin-top: 6px;
+    line-height: 1.1;
+  }
+
+  &__glu-wrap {
+    padding: 0 20px;
+    margin-top: 28px;
+  }
+
+  &__glu {
+    border-radius: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, m.$gold 0%, m.$gold-deep 100%);
+    color: #0A0A0C;
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__glu-eyebrow {
+    @include m.display(11px, 800, 2px);
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+
+  &__glu-title {
+    @include m.display(26px, 800, -0.5px);
+    line-height: 1.05;
+    margin-top: 4px;
+  }
+
+  &__glu-sub {
+    @include m.body(13px);
+    margin-top: 6px;
+    opacity: 0.8;
+    max-width: 240px;
+  }
+
+  &__glu-orb {
+    position: absolute;
+    right: -20px;
+    top: -20px;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: rgba(10, 10, 12, 0.08);
+  }
+
+  &__glu-star {
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+    font-family: m.$font-display;
+    font-size: 32px;
+    font-weight: 800;
+  }
+}
+
+.upnext {
+  width: 240px;
+  flex-shrink: 0;
+  border-radius: 18px;
+  background: var(--surface);
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+
+  &__img {
+    height: 140px;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+  }
+
+  &__img-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(23, 23, 26, 0.95) 100%);
+  }
+
+  &__stage-pill {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    color: #fff;
+    @include m.display(10px, 700, 1px);
+    text-transform: uppercase;
+
+    &.is-light {
+      color: #000;
+    }
+  }
+
+  &__fav {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  &__body {
+    padding: 10px 14px 14px;
+  }
+
+  &__name {
+    @include m.display(16px, 800);
+    color: var(--text);
+    line-height: 1.1;
+  }
+
+  &__meta {
+    @include m.body(12px);
+    color: var(--text-mute);
+    margin-top: 3px;
+  }
+}
+
+.stagerow {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  height: 120px;
+  cursor: pointer;
+  background-position: center;
+  background-size: cover;
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(10, 10, 12, 0.85) 0%, rgba(10, 10, 12, 0.35) 60%, rgba(10, 10, 12, 0.1) 100%);
+  }
+
+  &__inner {
+    position: absolute;
+    inset: 0;
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include m.display(13px, 800);
+
+    &.is-light {
+      color: #000;
+    }
+  }
+
+  &__name {
+    @include m.display(22px, 800, -0.3px);
+    color: var(--text);
+  }
+
+  &__desc {
+    @include m.body(12px);
+    color: var(--text-dim);
+    max-width: 260px;
+    line-height: 1.3;
+  }
+}

@@ -1,0 +1,118 @@
+@use '../../styles/mixins' as m;
+
+.favs {
+  padding-bottom: 110px;
+  background: var(--bg);
+  min-height: 100%;
+
+  &__empty {
+    margin: 20px;
+    padding: 40px 20px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    text-align: center;
+  }
+
+  &__empty-heart {
+    font-size: 40px;
+    margin-bottom: 8px;
+  }
+
+  &__empty-title {
+    @include m.display(16px, 700);
+    color: var(--text-dim);
+  }
+
+  &__empty-text {
+    @include m.body(13px);
+    color: var(--text-faint);
+    margin: 6px auto 0;
+    max-width: 240px;
+    line-height: 1.4;
+  }
+
+  &__list {
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__item {
+    display: flex;
+    gap: 12px;
+    padding: 12px;
+    background: var(--surface);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+  }
+
+  &__img {
+    width: 72px;
+    height: 72px;
+    border-radius: 10px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  &__info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__name {
+    @include m.display(16px, 800);
+    color: var(--text);
+  }
+
+  &__genre {
+    @include m.body(11px);
+    color: var(--text-mute);
+    margin-top: 1px;
+  }
+
+  &__shows {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__show {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    @include m.display(11px, 500);
+    color: var(--text-dim);
+  }
+
+  &__show-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+
+  &__show-day {
+    font-weight: 700;
+  }
+
+  &__show-sep {
+    opacity: 0.5;
+  }
+
+  &__heart {
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    background: rgba(229, 53, 43, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    border: 0;
+    cursor: pointer;
+    padding: 0;
+  }
+}

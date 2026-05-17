@@ -1,0 +1,182 @@
+@use '../../styles/mixins' as m;
+
+.fab-cluster {
+  position: absolute;
+  bottom: calc(100px + env(safe-area-inset-bottom, 0px));
+  right: 14px;
+  z-index: 95;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
+  font-family: m.$font-display;
+}
+
+.fab {
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  background: var(--fab-bg);
+  backdrop-filter: blur(18px);
+  border: 1px solid var(--fab-border);
+  box-shadow: var(--shadow-fab);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+
+  &__icon {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.32s cubic-bezier(0.2, 0.8, 0.2, 1),
+      transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    opacity: 0;
+    transform: rotate(-60deg) scale(0.5);
+
+    &.is-active {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+    }
+
+    &--sun.is-active {
+      transform: rotate(0deg) scale(1);
+    }
+
+    &--sun:not(.is-active) {
+      transform: rotate(60deg) scale(0.5);
+    }
+  }
+}
+
+.fab-lang {
+  display: flex;
+  align-items: center;
+  background: var(--fab-bg);
+  backdrop-filter: blur(18px);
+  border: 1px solid var(--fab-border);
+  border-radius: 999px;
+  box-shadow: var(--shadow-fab);
+  padding: 3px;
+  overflow: hidden;
+  transition: all 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+  width: 38px;
+  height: 38px;
+
+  &.is-open {
+    width: 152px;
+  }
+
+  &__globe {
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    padding: 0;
+
+    &.is-open {
+      background: var(--chip);
+    }
+  }
+
+  &__globe-wrap {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  &__badge {
+    position: absolute;
+    bottom: -2px;
+    right: -3px;
+    font-size: 7.5px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    background: m.$accent;
+    color: #fff;
+    padding: 1px 3px;
+    border-radius: 3px;
+    border: 1.5px solid var(--lang-badge-border);
+    line-height: 1;
+    font-family: m.$font-display;
+  }
+
+  &__options {
+    display: flex;
+    gap: 2px;
+    margin-left: 2px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s;
+    white-space: nowrap;
+
+    &.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  &__pill {
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--text-mute);
+    cursor: pointer;
+    transition: all 0.18s;
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: m.$font-display;
+    border: 0;
+
+    &.is-active {
+      background: m.$accent;
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(229, 53, 43, 0.4);
+    }
+  }
+
+  &__flag {
+    width: 12px;
+    height: 8px;
+    border-radius: 1.5px;
+    overflow: hidden;
+    display: inline-block;
+    flex-shrink: 0;
+    border: 1px solid var(--border-strong);
+
+    &--nl {
+      background: linear-gradient(180deg, #AE1C28 33%, #fff 33% 66%, #21468B 66%);
+    }
+
+    &--en {
+      background: #012169;
+    }
+  }
+
+  &__flag-uk {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent 44%, #fff 44% 56%, transparent 56%),
+      linear-gradient(-45deg, transparent 44%, #fff 44% 56%, transparent 56%),
+      linear-gradient(90deg, transparent 44%, #fff 44% 56%, transparent 56%),
+      linear-gradient(0deg, transparent 44%, #fff 44% 56%, transparent 56%),
+      #012169;
+  }
+}

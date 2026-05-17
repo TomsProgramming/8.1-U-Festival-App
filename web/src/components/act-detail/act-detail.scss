@@ -1,0 +1,172 @@
+@use '../../styles/mixins' as m;
+
+.act-detail {
+  position: absolute;
+  inset: 0;
+  z-index: 100;
+  background: var(--bg);
+  overflow-y: auto;
+  animation: slideUp 0.3s ease-out;
+
+  &__hero {
+    height: 380px;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+  }
+
+  &__hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, transparent 30%, rgba(10, 10, 12, 1) 100%);
+  }
+
+  &__topbar {
+    position: absolute;
+    top: 58px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__icon-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+
+    &.is-fav {
+      background: m.$accent;
+    }
+  }
+
+  &__title-block {
+    position: absolute;
+    bottom: 24px;
+    left: 20px;
+    right: 20px;
+  }
+
+  &__eyebrow {
+    @include m.display(11px, 600, 2px);
+    color: m.$accent;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    @include m.display(38px, 800, -1px);
+    color: #fff;
+    line-height: 0.95;
+    margin: 6px 0 0;
+  }
+
+  &__tag {
+    @include m.body(13px);
+    color: var(--text-dim);
+    margin-top: 6px;
+  }
+
+  &__body {
+    padding: 20px 20px 100px;
+  }
+
+  &__shows {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  &__show {
+    padding: 14px 16px;
+    border-radius: 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid m.$accent;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  &__show-time {
+    @include m.display(22px, 800);
+    color: var(--text);
+    line-height: 1;
+  }
+
+  &__show-day {
+    @include m.body(10px);
+    color: var(--text-faint);
+    margin-top: 3px;
+  }
+
+  &__show-stage {
+    flex: 1;
+  }
+
+  &__show-stage-name {
+    @include m.display(14px, 700);
+    color: var(--text);
+  }
+
+  &__show-stage-sub {
+    @include m.body(12px);
+    color: var(--text-mute);
+    margin-top: 2px;
+  }
+
+  &__bio {
+    @include m.body(15px);
+    color: var(--text-dim);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  &__cta {
+    margin-top: 20px;
+    display: flex;
+    gap: 8px;
+  }
+
+  &__cta-primary {
+    flex: 1;
+    padding: 14px;
+    border-radius: 12px;
+    background: m.$accent;
+    color: #fff;
+    @include m.display(14px, 700);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+    cursor: pointer;
+
+    &.is-fav {
+      background: #1E1E22;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  &__cta-secondary {
+    padding: 14px 18px;
+    border-radius: 12px;
+    background: #1E1E22;
+    color: #fff;
+    @include m.display(14px, 700);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+  }
+}

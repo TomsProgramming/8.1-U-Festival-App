@@ -1,0 +1,76 @@
+@use '../../styles/mixins' as m;
+
+.tabbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 90;
+  padding: 10px 10px calc(20px + env(safe-area-inset-bottom, 10px));
+  background: var(--tabbar-grad);
+
+  &__inner {
+    background: var(--tabbar-bg);
+    backdrop-filter: blur(18px);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 8px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  &__item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 6px 4px;
+    border-radius: 16px;
+    cursor: pointer;
+    position: relative;
+    background: transparent;
+    text-decoration: none;
+    color: inherit;
+
+    &.is-active {
+      background: var(--tab-active-bg);
+
+      .tabbar__label {
+        color: var(--text);
+      }
+    }
+  }
+
+  &__indicator {
+    position: absolute;
+    top: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 3px;
+    border-radius: 999px;
+    background: m.$accent;
+  }
+
+  &__label {
+    @include m.display(9.5px, 700, 0.2px);
+    color: var(--tab-inactive);
+  }
+
+  &__badge {
+    position: absolute;
+    top: 2px;
+    right: 12px;
+    width: 14px;
+    height: 14px;
+    border-radius: 999px;
+    background: m.$accent;
+    color: #fff;
+    @include m.display(9px, 800, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,283 @@
+@use '../../styles/mixins' as m;
+
+.map {
+  padding-bottom: 110px;
+  background: var(--bg);
+  min-height: 100%;
+
+  &__header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  &__fullscreen-btn {
+    padding: 8px 12px;
+    border-radius: 10px;
+    background: var(--chip);
+    border: 1px solid var(--border);
+    color: var(--text);
+    cursor: pointer;
+    @include m.display(11px, 700);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  &__filters {
+    display: flex;
+    gap: 6px;
+    padding: 0 20px 14px;
+    overflow-x: auto;
+    @include m.no-scrollbar;
+  }
+
+  &__filter {
+    padding: 9px 14px;
+    border-radius: 999px;
+    flex-shrink: 0;
+    background: var(--filter-chip-inactive-bg);
+    color: var(--filter-chip-inactive-text);
+    @include m.display(12px, 700, 0.2px);
+    cursor: pointer;
+    border: 1px solid var(--border);
+    white-space: nowrap;
+
+    &.is-active {
+      background: m.$accent;
+      color: #fff;
+      border: none;
+      box-shadow: 0 4px 12px rgba(229, 53, 43, 0.4);
+    }
+  }
+
+  &__container {
+    margin: 0 16px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #5A8F4A;
+    height: clamp(360px, 55vh, 480px);
+    position: relative;
+    box-shadow: var(--shadow-card);
+
+    &.is-fullscreen {
+      height: clamp(500px, 75vh, 680px);
+    }
+  }
+
+  &__controls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 5;
+  }
+
+  &__btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: m.$font-display;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  &__count {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    z-index: 5;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    @include m.display(10px, 700, 0.5px);
+    color: #fff;
+  }
+
+  &__card {
+    margin: 14px 16px 0;
+    border-radius: 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 16px;
+    animation: slideUp 0.25s ease-out;
+  }
+
+  &__card-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  &__card-info {
+    flex: 1;
+  }
+
+  &__card-title {
+    @include m.display(18px, 800);
+    color: var(--text);
+    line-height: 1.1;
+  }
+
+  &__card-sub {
+    @include m.body(12px);
+    color: var(--text-mute);
+    margin-top: 3px;
+  }
+
+  &__card-close {
+    width: 30px;
+    height: 30px;
+    border-radius: 999px;
+    background: var(--chip);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+  }
+
+  &__card-desc {
+    @include m.body(13px);
+    color: var(--text-dim);
+    line-height: 1.5;
+    margin-top: 12px;
+  }
+
+  &__card-cta {
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 10px;
+    background: m.$accent;
+    color: #fff;
+    @include m.display(13px, 700);
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(229, 53, 43, 0.35);
+    border: 0;
+  }
+
+  &__legend-wrap {
+    padding: 20px 20px 0;
+  }
+
+  &__legend-title {
+    @include m.display(18px, 800);
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  &__legend {
+    background: var(--surface);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    padding: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 12px;
+    column-gap: 10px;
+  }
+
+  &__legend-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__legend-text {
+    min-width: 0;
+  }
+
+  &__legend-label {
+    @include m.display(12px, 700);
+    color: var(--text);
+    line-height: 1.1;
+  }
+
+  &__legend-sub {
+    @include m.body(10px);
+    color: var(--text-faint);
+    margin-top: 2px;
+  }
+
+  &__lost {
+    margin: 16px 20px 0;
+    background: linear-gradient(135deg, rgba(229, 53, 43, 0.15) 0%, rgba(229, 53, 43, 0.05) 100%);
+    border: 1px solid rgba(229, 53, 43, 0.25);
+    border-radius: 14px;
+    padding: 14px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  &__lost-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: m.$accent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  &__lost-title {
+    @include m.display(13px, 800);
+    color: var(--text);
+  }
+
+  &__lost-text {
+    @include m.body(11px);
+    color: var(--text-dim);
+    margin-top: 2px;
+    line-height: 1.4;
+  }
+}
+
+.mapscroll {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  touch-action: none;
+
+  &__inner {
+    position: absolute;
+  }
+
+  &__pin {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+  }
+
+  &__pin-label {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, 4px);
+    padding: 3px 7px;
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.78);
+    @include m.display(9.5px, 700, 0.3px);
+    color: #fff;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+}

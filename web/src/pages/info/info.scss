@@ -1,0 +1,162 @@
+@use '../../styles/mixins' as m;
+
+.info {
+  padding-bottom: 110px;
+  background: var(--bg);
+  min-height: 100%;
+
+  &__contact-wrap {
+    padding: 0 16px;
+  }
+
+  &__contact {
+    border-radius: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, m.$accent 0%, m.$accent-deep 100%);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__contact-eyebrow {
+    @include m.display(11px, 500, 2px);
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  &__contact-title {
+    @include m.display(30px, 800, -1px);
+    line-height: 1;
+    margin-top: 6px;
+  }
+
+  &__contact-rows {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &__contact-bg {
+    position: absolute;
+    right: -30px;
+    top: -30px;
+    font-size: 200px;
+    font-family: m.$font-display;
+    font-weight: 800;
+    opacity: 0.08;
+  }
+
+  &__row {
+    display: flex;
+    gap: 10px;
+    @include m.body(13px);
+    padding-top: 4px;
+  }
+
+  &__row-k {
+    width: 70px;
+    color: var(--text-dim);
+    font-weight: 600;
+  }
+
+  &__row-v {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  &__reach {
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__reach-item {
+    display: flex;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--surface);
+    border-radius: 14px;
+    border: 1px solid var(--border);
+  }
+
+  &__reach-icon {
+    font-size: 26px;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  &__reach-title {
+    @include m.display(14px, 700);
+    color: var(--text);
+  }
+
+  &__reach-desc {
+    @include m.body(12px);
+    color: var(--text-mute);
+    margin-top: 3px;
+    line-height: 1.4;
+  }
+
+  &__lockers-wrap {
+    padding: 0 16px;
+  }
+
+  &__lockers {
+    background: var(--surface);
+    border-radius: 14px;
+    padding: 16px;
+    border: 1px solid var(--border);
+    @include m.body(13px);
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  &__faqs {
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &__faq {
+    background: var(--surface);
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  &__faq-head {
+    width: 100%;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 12px;
+    background: transparent;
+    border: 0;
+    text-align: left;
+  }
+
+  &__faq-q {
+    flex: 1;
+    @include m.display(14px, 600);
+    color: var(--text);
+  }
+
+  &__faq-chev {
+    transition: transform 0.2s;
+
+    &.is-open {
+      transform: rotate(90deg);
+    }
+  }
+
+  &__faq-a {
+    padding: 0 16px 14px;
+    @include m.body(13px);
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+}

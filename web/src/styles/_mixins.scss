@@ -1,0 +1,32 @@
+// Shared font-family stacks and mixins for the festival app
+@use 'sass:list';
+
+$font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+$font-body: 'Inter', -apple-system, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+$accent: #E5352B;
+$accent-deep: #B5281F;
+$gold: #FFC93C;
+$gold-deep: #E5A52B;
+
+@mixin display($size, $weight: 800, $tracking: -0.3px) {
+  font-family: $font-display;
+  font-size: $size;
+  font-weight: $weight;
+  letter-spacing: $tracking;
+}
+
+@mixin body($size: 13px) {
+  font-family: $font-body;
+  font-size: $size;
+  line-height: 1.5;
+}
+
+@mixin no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+  }
+}
