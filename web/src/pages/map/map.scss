@@ -292,4 +292,289 @@
     white-space: nowrap;
     pointer-events: none;
   }
+
+  &__here {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    transform: translate(-50%, -50%);
+    z-index: 9;
+    pointer-events: none;
+  }
+
+  &__here-dot {
+    position: absolute;
+    inset: 4px;
+    border-radius: 999px;
+    background: #2C86FF;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  }
+
+  &__here-pulse {
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    background: rgba(44, 134, 255, 0.45);
+    animation: herePulse 1.8s ease-out infinite;
+  }
+
+  &__here-label {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, 6px);
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: #2C86FF;
+    color: #fff;
+    @include m.display(9.5px, 700, 0.3px);
+    white-space: nowrap;
+  }
+
+  &--sim {
+    outline: 2px dashed rgba(44, 134, 255, 0.55);
+    outline-offset: -2px;
+  }
+}
+
+@keyframes herePulse {
+  0%   { transform: scale(1);   opacity: 0.7; }
+  70%  { transform: scale(2.6); opacity: 0; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+
+.map {
+  &__loc-banner {
+    margin: 10px 16px 0;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    @include m.body(12px);
+    color: var(--text-dim);
+
+    &.is-sim {
+      background: rgba(44, 134, 255, 0.10);
+      border-color: rgba(44, 134, 255, 0.45);
+      color: var(--text);
+    }
+
+    &.is-warn {
+      background: var(--accent-soft);
+      border-color: var(--accent-soft-border);
+      color: var(--text);
+    }
+  }
+
+  &__loc-banner-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: #2C86FF;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 3px rgba(44, 134, 255, 0.25);
+  }
+
+  &__loc-banner-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__loc-banner-btn {
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: var(--chip);
+    border: 1px solid var(--border);
+    color: var(--text);
+    cursor: pointer;
+    @include m.button-text(11px);
+    @include m.press-feedback;
+  }
+
+  &__sim-panel {
+    margin: 12px 16px 0;
+    padding: 14px;
+    border-radius: 14px;
+    background: var(--surface);
+    border: 1px dashed rgba(44, 134, 255, 0.6);
+  }
+
+  &__sim-title {
+    @include m.display(13px, 700);
+    color: var(--heading);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__sim-title-badge {
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: rgba(44, 134, 255, 0.18);
+    color: #2C86FF;
+    @include m.display(9px, 800, 0.6px);
+  }
+
+  &__sim-hint {
+    @include m.body(11px);
+    color: var(--text-mute);
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+
+  &__sim-presets {
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  &__sim-preset {
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: var(--chip);
+    border: 1px solid var(--border);
+    color: var(--text);
+    cursor: pointer;
+    @include m.button-text(11px);
+    @include m.press-feedback;
+
+    &.is-active {
+      background: #2C86FF;
+      border-color: #2C86FF;
+      color: #fff;
+    }
+  }
+
+  &__sim-actions {
+    margin-top: 12px;
+    display: flex;
+    gap: 8px;
+  }
+
+  &__sim-stop {
+    flex: 1;
+    padding: 9px 12px;
+    border-radius: 10px;
+    background: var(--chip);
+    border: 1px solid var(--border);
+    color: var(--text);
+    cursor: pointer;
+    @include m.button-text(12px);
+    @include m.press-feedback;
+  }
+
+  &__sim-divider {
+    margin: 14px -14px 0;
+    border-top: 1px dashed var(--border);
+  }
+
+  &__sim-subtitle {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    @include m.body(11px);
+    color: var(--text-dim);
+  }
+
+  &__sim-walk-row {
+    margin-top: 10px;
+    display: flex;
+    gap: 8px;
+  }
+
+  &__sim-walk-btn {
+    flex: 1;
+    padding: 9px 12px;
+    border-radius: 10px;
+    background: var(--chip);
+    border: 1px solid var(--border);
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    @include m.button-text(12px);
+    @include m.press-feedback;
+
+    &.is-primary {
+      background: #2C86FF;
+      border-color: #2C86FF;
+      color: #fff;
+    }
+
+    &:disabled { opacity: 0.4; cursor: not-allowed; }
+  }
+
+  &__sim-speed-row {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  &__sim-speed-label {
+    @include m.body(11px);
+    color: var(--text-mute);
+    margin-right: 4px;
+  }
+
+  &__sim-speed-btn {
+    flex: 1;
+    padding: 6px 8px;
+    border-radius: 999px;
+    background: var(--chip);
+    border: 1px solid var(--border);
+    color: var(--text);
+    cursor: pointer;
+    @include m.button-text(11px);
+    @include m.press-feedback;
+
+    &.is-active {
+      background: #2C86FF;
+      border-color: #2C86FF;
+      color: #fff;
+    }
+  }
+
+  &__sim-follow {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    @include m.body(12px);
+    color: var(--text);
+    cursor: pointer;
+    user-select: none;
+
+    input {
+      accent-color: #2C86FF;
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &__sim-preset:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  &__sim-gps-status {
+    margin-top: 10px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    background: rgba(44, 134, 255, 0.10);
+    border: 1px solid rgba(44, 134, 255, 0.35);
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    @include m.body(11px);
+  }
 }

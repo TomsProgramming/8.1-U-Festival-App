@@ -52,7 +52,48 @@ de laatste sessie en — bij een koude start — op de bundled fallback in
 | Offline werken            | SW-strategieën in `web/public/sw.js`:<br/>– App-shell **cache-first**<br/>– API **network-first** met cache-fallback<br/>– Assets **stale-while-revalidate**<br/>+ extra localStorage-cache in `web/src/data/api.ts` voor data-laag |
 | QR-launch                 | App is een gewone PWA op `/` — elke QR die naar de URL wijst opent hem direct, daarna kan de gebruiker installeren via de install-bubble of het systeemmenu |
 
-## 5. Push-meldingen testen
+## 5. Op je telefoon testen (PWA + GPS-test)
+
+De plattegrond heeft een **GPS-test** modus waarmee je echte beweging IRL
+op de festivalkaart kunt zien (handig: dan loop je gewoon in je tuin/op
+straat en zie je de pin schuiven over Strijkviertel).
+
+Twee dingen nodig:
+
+1. **De dev-server moet bereikbaar zijn vanaf je telefoon**
+
+   ```bash
+   cd web
+   npm run dev -- --host        # bindt op 0.0.0.0
+   ```
+
+   Vite logt nu een `Network:`-URL met je LAN-IP, bv.
+   `http://192.168.1.42:5173`.
+
+2. **HTTPS, anders weigert de browser GPS en PWA-install**
+
+   Localhost is een uitzondering, een LAN-IP niet. Tunnel het via:
+
+   ```bash
+   npx ngrok http 5173
+   ```
+
+   Ngrok print een HTTPS-URL (`https://abc123.ngrok-free.app`). Die open
+   je op je telefoon.
+
+3. **Installeren + GPS-test gebruiken**
+
+   - Open de ngrok-URL in Chrome (Android) of Safari (iOS).
+   - Voeg toe aan beginscherm via de install-bubble of het systeemmenu.
+   - Open de app vanaf je beginscherm → tab **Plattegrond** → **Test thuis**.
+   - Scroll naar **Loop écht buiten met je telefoon** → **Start GPS-test**.
+   - Geef locatie-toestemming. Eerste GPS-reading wordt je nulpunt.
+   - Loop fysiek rond — je pin schuift mee over de festivalkaart.
+   - **Reset hier**: pak een nieuwe GPS-nulpunt vanaf de huidige pin-positie
+     (handig als je een eind verderop bent en weer "bij" een ander podium
+     wil beginnen).
+
+## 6. Push-meldingen testen
 
 1. Open de app, ga naar **Info** → **Meldingen** → **Zet aan**.
 2. Geef toestemming in de browser.
@@ -66,7 +107,7 @@ curl -X POST http://localhost:4000/api/push/broadcast-act \
   -d '{"actId":"armin","title":"Armin begint om 23:00","body":"Loop nu richting Ponton.","url":"/lineup"}'
 ```
 
-## 6. Productie / hosting
+## 7. Productie / hosting
 
 - Bouw de web-app met `npm run build` (output: `web/dist/`).
 - Serveer `web/dist/` statisch achter HTTPS — anders weigert de browser

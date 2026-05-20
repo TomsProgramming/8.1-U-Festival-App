@@ -13,64 +13,64 @@ Per gebruik noteer ik:
 
 ## Logboek
 
-### 11 mei 2025
+### 11 mei 2026
 
 #### Entry 1
-- **Datum/tijd:** 11 mei 2025, 10:15
+- **Datum/tijd:** 11 mei 2026, 10:15
 - **Tool:** Claude Design
 - **Prompt:**
   > Dit zijn screenshots van een Notion-pagina en de afbeeldingen die daar op stonden. Kan je een design maken die perfect voor dit project is en aan alle voorwaarden voldoet?
 
 #### Entry 2
-- **Datum/tijd:** 11 mei 2025, 10:45
+- **Datum/tijd:** 11 mei 2026, 10:45
 - **Tool:** Claude Design
 - **Prompt:**
   > Kan je de plattegrond veel beter maken? Het is een grote map dus zorg dat die mooi erin komt en dat alle markers goed staan. Ik heb de icoontjes hier aan toegevoegd. Zorg ook dat de taalswitcher iets mooier in het design komt.
 
 #### Entry 3
-- **Datum/tijd:** 11 mei 2025, 10:50
+- **Datum/tijd:** 11 mei 2026, 10:50
 - **Tool:** Claude Design
 - **Prompt:**
   > De taalswitcher komt soms nog voor andere knoppen. Zou je dat mooi kunnen oplossen?
 
 #### Entry 4
-- **Datum/tijd:** 11 mei 2025, 10:55
+- **Datum/tijd:** 11 mei 2026, 10:55
 - **Tool:** Claude Design
 - **Prompt:**
   > Dit is heel goed, alleen als je hem uitklapt is het net te kort waardoor je "Engels" niet ziet.
 
 #### Entry 5
-- **Datum/tijd:** 11 mei 2025, 11:00
+- **Datum/tijd:** 11 mei 2026, 11:00
 - **Tool:** Claude Design
 - **Prompt:**
   > Kan je nu ook nog een white mode toevoegen, zodat je kan kiezen tussen dark en light mode?
 
 ---
 
-### 13 mei 2025
+### 13 mei 2026
 
 #### Entry 6
-- **Datum/tijd:** 13 mei 2025, 11:15
+- **Datum/tijd:** 13 mei 2026, 11:15
 - **Tool:** Claude Design
 - **Prompt:**
   > Kan je de tekstjes nog even goed bekijken? Veel dingen zijn in light mode niet te lezen. Ook werkt de switch-animatie van de knop voor het wisselen tussen light en dark mode niet goed.
 
 #### Entry 7
-- **Datum/tijd:** 13 mei 2025, 11:30
+- **Datum/tijd:** 13 mei 2026, 11:30
 - **Tool:** Claude Code
 - **Model:** Opus 4.7
 - **Prompt:**
   > Ik heb met Claude Design een heel design gemaakt (te zien in claude-design). Ik zou het hele design graag in React willen zetten in de map "web". Heb je een React-project met de structuur zoals ik hem wil hebben? Kan je daar het hele design in zetten?
 
 #### Entry 8
-- **Datum/tijd:** 13 mei 2025, 11:45
+- **Datum/tijd:** 13 mei 2026, 11:45
 - **Tool:** Claude Code
 - **Model:** Opus 4.7
 - **Prompt:**
   > Het hele design staat erin, alleen is het nog niet helemaal responsive. Het moet op elke telefoon goed werken; nu zit het vast op één breedte. Kan je daar nog voor zorgen?
 
 #### Entry 9
-- **Datum/tijd:** 13 mei 2025, 12:00
+- **Datum/tijd:** 13 mei 2026, 12:00
 - **Tool:** Claude Code
 - **Model:** Opus 4.7
 - **Prompt:**
@@ -92,17 +92,17 @@ Per gebruik noteer ik:
 
 ---
 
-### 17 mei 2025
+### 17 mei 2026
  
 #### Entry 10
-- **Datum/tijd:** 17 mei 2025, 13:50
+- **Datum/tijd:** 17 mei 2026, 13:50
 - **Tool:** Claude (claude.ai)
 - **Model:** Claude Opus 4.7
 - **Prompt:**
   > Bij mijn opdracht staat dat ik al mijn AI-gebruik in een md-bestand moet zetten. Kan je dit AI-logboek voor mij opzetten en invullen met mijn prompts, tijden en datums?
 
 #### Entry 11
-- **Datum/tijd:** 17 mei 2025, 13:58
+- **Datum/tijd:** 17 mei 2026, 13:58
 - **Tool:** Claude Code
 - **Model:** Opus 4.7
 - **Prompt:**
@@ -123,28 +123,28 @@ Per gebruik noteer ik:
   > - Animatie: bij schermwisselingen en interactie
 
 #### Entry 12
-- **Datum/tijd:** 17 mei 2025, 14:30
+- **Datum/tijd:** 17 mei 2026, 14:30
 - **Tool:** Claude Code
 - **Model:** Opus 4.7
 - **Prompt:**
   > Kan je fixen dat de talen vlaggen helemaal goed kloppen in het talen switch menu. Zorg ook dat als ik op een artietst heb gedrukt in de lineup en die heb een hart heb gegeven niet de knop volledig rood is maar dat je ziet dat je die followed
 
 #### Entry 13
-- **Datum/tijd:** 17 mei 2025, 14:36
+- **Datum/tijd:** 17 mei 2026, 14:36
 - **Tool:** Claude Code
 - **Model:** Opus 4.7
 - **Prompt:**
   > De engelse vlag vind ik nog niet heel goed fix die helemaal. In light mode is de text van de artiest in de lineup en dan de detail niet heel goed te lezen fix dat ook helemaal
 
 #### Entry 14
-- **Datum/tijd:** 17 mei 2025, 15:00
+- **Datum/tijd:** 17 mei 2026, 15:00
 - **Tool:** Claude Code
 - **Model:** Opus 4.7
 - **Prompt:**
   > Ik wil er een PWA van maken kan je zorgen dat als de app op een telefoon word geopend dat er word gekeken ofdat het via een pwa is zo niet laat je precies voor dat apparaat zien hoe de pwa geinstalleerd moet worden zorg dat het volledig in de style van de hele website is. Kan je ook een manifast.json maken en die toevoegen met een app icoon zodat ik hem kan toevoegen aan mijn telefoon
 
 #### Entry 15
-- **Datum/tijd:** 17 mei 2025, 21:47
+- **Datum/tijd:** 17 mei 2026, 21:47
 - **Tool:** Claude Code
 - **Model:** Opus 4.7
 - **Prompt:**
@@ -158,21 +158,21 @@ Per gebruik noteer ik:
   > - Offline werken (caching)
 
 #### Entry 16
-- **Datum/tijd:** 17 mei 2025, 22:01
+- **Datum/tijd:** 17 mei 2026, 22:01
 - **Tool:** Claude Code
 - **Model:** Opus 4.7
 - **Prompt:**
   > Oke ik heb een paar problemen Hij vraagd volgens mij nergens om push notificaties permissions dus kan die ze niet versutren. Als ik offline ga worden de icoontjes in de nav enzo niet meer ingeladen kan je dat ook fixen. En als ik offline ga en ik like iets word dat dan later gesynct naar de server? Ook in de data is er geen ai gebruikt en geen relaties tussen tables zorg dat de ids altijd nummers zijn met ai
 
 #### Entry 17
-- **Datum/tijd:** 17 mei 2025, 22:10
+- **Datum/tijd:** 17 mei 2026, 22:10
 - **Tool:** Claude Code
 - **Model:** Opus 4.7
 - **Prompt:**
   > Perfect kan je nog zorgen dat er standaard geen artietsen in favorieten staan nu staan er standaard 2 in
 
 #### Entry 18
-- **Datum/tijd:** 17 mei 2025, 22:17
+- **Datum/tijd:** 17 mei 2026, 22:17
 - **Tool:** Claude Code
 - **Model:** Opus 4.7
 - **Prompt:**
@@ -210,4 +210,36 @@ Per gebruik noteer ik:
   > 
   > **Spinvis**
   > https://www.youtube.com/watch?v=F3ZTrGWSLf4
+
+---
+
+### 20 mei 2026
+
+#### Entry 19
+- **Datum/tijd:** 20 mei 2026, 9:25
+- **Tool:** Claude Code
+- **Model:** Opus 4.7
+- **Prompt:**
+  > Ik wil nu graag de map werkend maken alleen ben ik niet op de locatie maar wil ik het wel goed testen zonder op die locatie te zijn kan je dat helemaal goed maken
+
+#### Entry 20
+- **Datum/tijd:** 20 mei 2026, 9:40
+- **Tool:** Claude Code
+- **Model:** Opus 4.7
+- **Prompt:**
+  > Kan je nu met de echte locatie doen dus dan denk ik rond een loop dat de locatie echt beweegt bedenk daar een goeie manier voor om dat de simuleren
+
+#### Entry 21
+- **Datum/tijd:** 20 mei 2026, 10:20
+- **Tool:** Claude Code
+- **Model:** Opus 4.7
+- **Prompt:**
+  > Kan je ook nog een test toevoegen voor de gps van mijn mobile als ik de webapp geinstalleerd heb zodat ik dan ook op dee kaart kan zien als ik zelf echt rond loop bijvoorbeeld buiten dat ik over de map van het festival beweeg
+
+#### Entry 21
+- **Datum/tijd:** 20 mei 2026, 10:52
+- **Tool:** Claude Code
+- **Model:** Opus 4.7
+- **Prompt:**
+  > Perfect kan je ook zorgen dat de map volledig mobile friendly is dus met vingers inzoomen enzovoort
 ---
