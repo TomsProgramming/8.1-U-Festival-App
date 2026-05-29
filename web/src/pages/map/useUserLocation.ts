@@ -25,26 +25,28 @@ interface State {
   gpsTest: boolean;
 }
 
-// Natuurlijk rondje over het terrein: entree → oosten → noord-podia → west → terug.
+// Natuurlijk rondje over het terrein: entree → oost (Hangar) → langs de
+// podia naar het westen → Ponton → terug naar de entree.
 export const DEFAULT_WALK_ROUTE: SvgPoint[] = [
-  { x: 400, y: 1000 }, // Entree
-  { x: 615, y: 920 },  // Main Bar
-  { x: 685, y: 780 },  // Oost / IJskar
-  { x: 625, y: 380 },  // The Club
-  { x: 555, y: 300 },  // Beach Bar
-  { x: 455, y: 610 },  // The Lake
-  { x: 210, y: 320 },  // Ponton
-  { x: 145, y: 800 },  // Hangar
-  { x: 250, y: 870 },  // Hangar Bites
-  { x: 400, y: 870 },  // Plaza
+  { x: 1607, y: 1149 }, // Hoofdingang
+  { x: 1888, y: 379 },  // Beach Bar (oost)
+  { x: 2102, y: 231 },  // Hangar
+  { x: 1614, y: 529 },  // The Club
+  { x: 1257, y: 615 },  // The Lake
+  { x: 822, y: 596 },   // Street Food
+  { x: 497, y: 849 },   // Ponton
+  { x: 274, y: 998 },   // Ponton Bar (west)
+  { x: 559, y: 1121 },  // Lockers
+  { x: 1250, y: 1000 }, // Plaza
 ];
 
-// SVG-units per seconde. 1 unit ≈ 0.85 m, dus normaal ≈ 34 u/s ≈ 29 m/s (versneld
-// tov echte wandeltempo — anders duurt een rondje minuten op je kaartje).
+// SVG-units per seconde. In deze ruimte is ~3,4 unit ≈ 1 m, dus normaal
+// ≈ 120 u/s ≈ 35 m/s (versneld t.o.v. echt wandeltempo — anders duurt een
+// rondje minuten op het kaartje).
 const SPEED_VALUES: Record<WalkSpeed, number> = {
-  slow: 18,
-  normal: 40,
-  fast: 90,
+  slow: 55,
+  normal: 120,
+  fast: 260,
 };
 
 const SIM_KEY = 'ufest_map_sim_pos';

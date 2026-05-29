@@ -333,32 +333,33 @@ INSERT INTO schedule (day, stage_id, act_id, start_h, end_h) VALUES
 ('sunday',   (SELECT id FROM stages WHERE slug='hangar'), (SELECT id FROM acts WHERE slug='spinvis'),    23,   25);
 
 -- Map-pins (stage_id via INT-FK)
+-- Coördinaten komen exact overeen met de markers op de originele plattegrond
+-- (kaart_festival_markers.svg) in de 2330.58 × 1353.19-ruimte van map_base.svg.
 INSERT INTO map_pins (slug, kind, num, x, y, label, stage_id) VALUES
-('ponton','stage',1,210,295,'Ponton',  (SELECT id FROM stages WHERE slug='ponton')),
-('lake',  'stage',2,455,585,'The Lake',(SELECT id FROM stages WHERE slug='lake')),
-('club',  'stage',3,625,350,'The Club',(SELECT id FROM stages WHERE slug='club')),
-('hangar','stage',4,145,800,'Hangar',  (SELECT id FROM stages WHERE slug='hangar')),
-('ent1', 'entrance',NULL,400,1035,'Hoofdingang',NULL),
-('f1',   'food',NULL,305,225,'Foodcourt Noord',NULL),
-('f2',   'food',NULL,565,440,'Street Food',NULL),
-('f3',   'food',NULL,250,870,'Hangar Bites',NULL),
-('f4',   'food',NULL,525,895,'Foodmarkt Zuid',NULL),
-('b1',   'bar',NULL,180,380,'Ponton Bar',NULL),
-('b2',   'bar',NULL,555,300,'Beach Bar',NULL),
-('b3',   'bar',NULL,405,665,'Lake Lounge',NULL),
-('b4',   'bar',NULL,225,730,'Hangar Bar',NULL),
-('b5',   'bar',NULL,615,920,'Main Bar',NULL),
-('ic1',  'icecream',NULL,380,495,'IJskar',NULL),
-('ic2',  'icecream',NULL,685,780,'IJskar',NULL),
-('t1',   'toilet',NULL,115,255,'Toilet',NULL),
-('t2',   'toilet',NULL,670,440,'Toilet',NULL),
-('t3',   'toilet',NULL,340,760,'Toilet',NULL),
-('t4',   'toilet',NULL,600,1000,'Toilet',NULL),
-('t5',   'toilet',NULL,65,870,'Toilet',NULL),
-('fa1',  'firstaid',NULL,435,975,'EHBO-post',NULL),
-('fa2',  'firstaid',NULL,495,395,'EHBO-post',NULL),
-('m1',   'merch',NULL,330,970,'Merchandise',NULL),
-('lk1',  'locker',NULL,490,1015,'Lockers',NULL);
+('ponton','stage',1,497,849,'Ponton',  (SELECT id FROM stages WHERE slug='ponton')),
+('lake',  'stage',2,1257,615,'The Lake',(SELECT id FROM stages WHERE slug='lake')),
+('club',  'stage',3,1614,529,'The Club',(SELECT id FROM stages WHERE slug='club')),
+('hangar','stage',4,2102,231,'Hangar',  (SELECT id FROM stages WHERE slug='hangar')),
+('ent1', 'entrance',NULL,1607,1149,'Hoofdingang',NULL),
+('f1',   'food',NULL,283,849,'Ponton Food',NULL),
+('f2',   'food',NULL,822,596,'Street Food',NULL),
+('b1',   'bar',NULL,274,998,'Ponton Bar',NULL),
+('b2',   'bar',NULL,1197,551,'Lake Bar',NULL),
+('b3',   'bar',NULL,1678,390,'Club Bar',NULL),
+('b4',   'bar',NULL,1888,379,'Beach Bar',NULL),
+('ic1',  'icecream',NULL,615,908,'IJskar',NULL),
+('ic2',  'icecream',NULL,913,567,'IJskar',NULL),
+('ic3',  'icecream',NULL,1458,448,'IJskar',NULL),
+('ic4',  'icecream',NULL,1937,244,'IJskar',NULL),
+('t1',   'toilet',NULL,182,1063,'Toilet',NULL),
+('t2',   'toilet',NULL,1140,384,'Toilet',NULL),
+('t3',   'toilet',NULL,2169,336,'Toilet',NULL),
+('fa1',  'firstaid',NULL,424,414,'EHBO-post',NULL),
+('m1',   'merch',NULL,407,1064,'Merchandise',NULL),
+('m2',   'merch',NULL,739,540,'Merchandise',NULL),
+('m3',   'merch',NULL,1525,536,'Merchandise',NULL),
+('lk1',  'locker',NULL,559,1121,'Lockers',NULL),
+('lk2',  'locker',NULL,708,1105,'Lockers',NULL);
 
 -- FAQ
 INSERT INTO faqs (lang, question, answer, sort) VALUES

@@ -2,12 +2,14 @@ import { MAP_H, MAP_W } from './MapIllustration';
 
 // Approximate geografische begrenzing van het Strijkviertel-terrein.
 // Hoek noord-west = SVG (0,0), hoek zuid-oost = SVG (MAP_W, MAP_H).
-// Geen rotatie meegerekend; ruim genoeg voor het hele festivalterrein.
+// De rechthoek is bewust landscape (oost-west ruimer dan noord-zuid) zodat
+// hij de verhouding van de plattegrond (2330 × 1353 ≈ 1,72) volgt en de
+// GPS-projectie niet uitrekt. Geen rotatie meegerekend.
 export const MAP_GEO_BOUNDS = {
-  north: 52.0790,
-  south: 52.0720,
-  west: 5.0520,
-  east: 5.0620,
+  north: 52.0781,
+  south: 52.0729,
+  west: 5.0497,
+  east: 5.0643,
 } as const;
 
 export interface SvgPoint {

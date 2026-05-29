@@ -32,12 +32,12 @@ const CAPACITIES: Record<string, string> = {
 };
 
 const SIM_PRESETS: SimPreset[] = [
-  { id: 'entrance', labelNL: 'Bij de entree', labelEN: 'At entrance', pos: { x: 400, y: 1000 } },
-  { id: 'ponton', labelNL: 'Bij Ponton', labelEN: 'At Ponton', pos: { x: 210, y: 320 } },
-  { id: 'lake', labelNL: 'Bij The Lake', labelEN: 'At The Lake', pos: { x: 455, y: 610 } },
-  { id: 'club', labelNL: 'Bij The Club', labelEN: 'At The Club', pos: { x: 625, y: 380 } },
-  { id: 'hangar', labelNL: 'Bij Hangar', labelEN: 'At Hangar', pos: { x: 145, y: 830 } },
-  { id: 'plaza', labelNL: 'Op de Plaza', labelEN: 'At the Plaza', pos: { x: 400, y: 870 } },
+  { id: 'entrance', labelNL: 'Bij de entree', labelEN: 'At entrance', pos: { x: 1607, y: 1149 } },
+  { id: 'ponton', labelNL: 'Bij Ponton', labelEN: 'At Ponton', pos: { x: 497, y: 849 } },
+  { id: 'lake', labelNL: 'Bij The Lake', labelEN: 'At The Lake', pos: { x: 1257, y: 615 } },
+  { id: 'club', labelNL: 'Bij The Club', labelEN: 'At The Club', pos: { x: 1614, y: 529 } },
+  { id: 'hangar', labelNL: 'Bij Hangar', labelEN: 'At Hangar', pos: { x: 2102, y: 231 } },
+  { id: 'plaza', labelNL: 'Op de Plaza', labelEN: 'At the Plaza', pos: { x: 1250, y: 1000 } },
 ];
 
 export default function MapPage() {
@@ -306,7 +306,7 @@ export default function MapPage() {
                 disabled={location.gpsTest}
                 onClick={() => {
                   location.startWalk();
-                  if (followMe) handleRef.current?.centerOn({ x: 400, y: 1000 });
+                  if (followMe) handleRef.current?.centerOn({ x: 1607, y: 1149 });
                 }}
               >
                 <MatIcon name="play_arrow" size={14} weight={600} color="#fff" />
