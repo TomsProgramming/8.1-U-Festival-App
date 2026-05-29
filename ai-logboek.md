@@ -242,4 +242,39 @@ Per gebruik noteer ik:
 - **Model:** Opus 4.7
 - **Prompt:**
   > Perfect kan je ook zorgen dat de map volledig mobile friendly is dus met vingers inzoomen enzovoort
+
+---
+
+### 29 mei 2026
+
+#### Entry 22
+- **Datum/tijd:** 29 mei 2026, ~10:00
+- **Tool:** Claude Code
+- **Model:** Claude Sonnet 4.5
+- **Prompt:**
+  > kan je een heel cms achter deze website maken waar je alles aan kan passen
+
+#### Entry 23
+- **Datum/tijd:** 29 mei 2026, ~10:05
+- **Tool:** Claude Code
+- **Model:** Claude Sonnet 4.5
+- **Prompt:**
+  > *(goedkeuring van het implementatieplan voor het CMS)*
+  >
+  > Het plan omvatte: een aparte React admin-app op poort 5174, JWT-authenticatie met bcryptjs, CRUD-routes voor alle content types (podia, artiesten, programma, genres, kaartpunten, FAQ's, vervoer, festivalinfo) en een push-broadcast paneel.
+
+#### Entry 24
+- **Datum/tijd:** 29 mei 2026, ~10:30
+- **Tool:** Claude Code
+- **Model:** Claude Sonnet 4.5
+- **Prompt:**
+  > Huh waarom heb je een apart mapje voor admin gemaakt?
+
+#### Entry 25
+- **Datum/tijd:** 29 mei 2026, ~10:35
+- **Tool:** Claude Code
+- **Model:** Claude Sonnet 4.5
+- **Prompt:**
+  > kan je de ai-logboek.md en setup.md helemaal update
+
 ---

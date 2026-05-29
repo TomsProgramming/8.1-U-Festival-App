@@ -1,0 +1,371 @@
+@use 'variables' as v;
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  color: v.$text;
+  background: v.$bg;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: v.$heading; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+h1 { font-size: 1.5rem; font-weight: 700; color: v.$text; }
+h2 { font-size: 1.1rem; font-weight: 600; }
+
+// ── Admin shell layout ──────────────────────────────────────────────────────
+.admin-shell {
+  display: grid;
+  grid-template-columns: v.$sidebar-w 1fr;
+  min-height: 100vh;
+}
+
+// ── Sidebar ─────────────────────────────────────────────────────────────────
+.sidebar {
+  background: v.$text;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+
+  &__brand {
+    padding: 20px 20px 16px;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+
+    h1 {
+      font-size: 1.1rem;
+      color: #fff;
+      line-height: 1.2;
+    }
+    span {
+      font-size: .75rem;
+      color: rgba(255,255,255,.5);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+  }
+
+  &__nav {
+    flex: 1;
+    padding: 12px 0;
+  }
+
+  &__section-label {
+    font-size: .65rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.35);
+    padding: 16px 20px 4px;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 20px;
+    color: rgba(255,255,255,.7);
+    font-size: .875rem;
+    font-weight: 500;
+    transition: background .15s, color .15s;
+    cursor: pointer;
+    text-decoration: none;
+
+    .material-icons-round { font-size: 18px; }
+
+    &:hover {
+      background: rgba(255,255,255,.08);
+      color: #fff;
+      text-decoration: none;
+    }
+
+    &.active {
+      background: v.$accent;
+      color: #fff;
+    }
+  }
+
+  &__footer {
+    padding: 16px 20px;
+    border-top: 1px solid rgba(255,255,255,.1);
+
+    button {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      background: none;
+      border: 1px solid rgba(255,255,255,.2);
+      color: rgba(255,255,255,.7);
+      padding: 8px 12px;
+      border-radius: v.$radius;
+      cursor: pointer;
+      font-size: .875rem;
+      transition: all .15s;
+
+      &:hover {
+        border-color: v.$danger;
+        color: v.$danger;
+      }
+    }
+  }
+}
+
+// ── Main content area ────────────────────────────────────────────────────────
+.admin-main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 28px 16px;
+  background: v.$surface;
+  border-bottom: 1px solid v.$border;
+  gap: 12px;
+
+  &__title { font-size: 1.25rem; font-weight: 700; }
+}
+
+.page-content {
+  padding: 24px 28px;
+  flex: 1;
+}
+
+// ── Login page ───────────────────────────────────────────────────────────────
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: v.$bg;
+
+  &__card {
+    background: v.$surface;
+    border-radius: v.$radius * 2;
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: v.$shadow;
+
+    h1 {
+      font-size: 1.4rem;
+      margin-bottom: 6px;
+    }
+
+    p {
+      color: v.$text-mute;
+      margin-bottom: 28px;
+      font-size: .875rem;
+    }
+  }
+
+  &__brand {
+    color: v.$accent;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: block;
+  }
+}
+
+// ── Forms ────────────────────────────────────────────────────────────────────
+.form-group {
+  margin-bottom: 16px;
+
+  label {
+    display: block;
+    font-size: .8rem;
+    font-weight: 600;
+    color: v.$text-mute;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    margin-bottom: 6px;
+  }
+}
+
+input[type=text],
+input[type=password],
+input[type=number],
+input[type=url],
+input[type=color],
+select,
+textarea {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1.5px solid v.$border;
+  border-radius: v.$radius;
+  font-family: inherit;
+  font-size: .9rem;
+  color: v.$text;
+  background: v.$surface;
+  transition: border-color .15s;
+  outline: none;
+
+  &:focus { border-color: v.$heading; }
+  &::placeholder { color: v.$text-mute; }
+}
+
+textarea { resize: vertical; min-height: 90px; }
+
+select[multiple] { min-height: 120px; }
+
+// ── Buttons ──────────────────────────────────────────────────────────────────
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  border-radius: v.$radius;
+  font-family: inherit;
+  font-size: .875rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: opacity .15s, transform .1s;
+
+  &:active { transform: scale(.97); }
+  &:disabled { opacity: .5; cursor: not-allowed; }
+
+  .material-icons-round { font-size: 16px; }
+
+  &--primary {
+    background: v.$accent;
+    color: #fff;
+    &:hover { opacity: .88; }
+  }
+
+  &--secondary {
+    background: v.$surface-2;
+    color: v.$text;
+    border: 1.5px solid v.$border;
+    &:hover { background: v.$border; }
+  }
+
+  &--danger {
+    background: v.$danger;
+    color: #fff;
+    &:hover { opacity: .88; }
+  }
+
+  &--icon {
+    padding: 6px;
+    background: none;
+    color: v.$text-mute;
+    &:hover { color: v.$text; background: v.$surface-2; }
+  }
+
+  &--sm {
+    padding: 5px 12px;
+    font-size: .8rem;
+  }
+
+  &--full { width: 100%; justify-content: center; }
+}
+
+// ── Stat cards (dashboard) ───────────────────────────────────────────────────
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.stat-card {
+  background: v.$surface;
+  border-radius: v.$radius;
+  padding: 20px;
+  box-shadow: v.$shadow;
+
+  &__value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: v.$heading;
+    line-height: 1;
+  }
+
+  &__label {
+    font-size: .8rem;
+    color: v.$text-mute;
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    font-weight: 600;
+  }
+}
+
+// ── Toast ─────────────────────────────────────────────────────────────────────
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.toast {
+  background: v.$text;
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: v.$radius;
+  font-size: .875rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,.2);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: slide-in .2s ease;
+  max-width: 340px;
+
+  &--success { background: v.$success; }
+  &--error   { background: v.$danger; }
+
+  .material-icons-round { font-size: 18px; }
+}
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+// ── Bilingual tabs ─────────────────────────────────────────────────────────
+.bilingual-tabs {
+  margin-bottom: 16px;
+
+  &__buttons {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 16px;
+    border-bottom: 2px solid v.$border;
+    padding-bottom: 0;
+  }
+
+  &__btn {
+    padding: 6px 18px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: .875rem;
+    font-weight: 600;
+    color: v.$text-mute;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: color .15s, border-color .15s;
+
+    &.active {
+      color: v.$heading;
+      border-bottom-color: v.$heading;
+    }
+  }
+}

@@ -5,6 +5,7 @@ require('dotenv').config();
 
 const db = require('./db');
 const { sendTo, publicKey } = require('./push');
+const adminRouter = require('./adminRouter');
 
 const app = express();
 app.use(express.json({ limit: '256kb' }));
@@ -349,6 +350,11 @@ app.post('/api/push/broadcast-act', async (req, res, next) => {
     res.json({ sent: ok, total: subs.length });
   } catch (e) { next(e); }
 });
+
+// -------------------------------------------------------------------------
+// Admin CMS routes
+// -------------------------------------------------------------------------
+app.use('/api/admin', adminRouter);
 
 // -------------------------------------------------------------------------
 // Error handler

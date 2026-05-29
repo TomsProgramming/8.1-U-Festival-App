@@ -1,0 +1,136 @@
+@use 'variables' as v;
+
+.data-table-wrap {
+  background: v.$surface;
+  border-radius: v.$radius;
+  box-shadow: v.$shadow;
+  overflow: hidden;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  thead {
+    background: v.$surface-2;
+
+    th {
+      padding: 11px 16px;
+      text-align: left;
+      font-size: .75rem;
+      font-weight: 700;
+      color: v.$text-mute;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      border-bottom: 1.5px solid v.$border;
+      white-space: nowrap;
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid v.$border;
+      transition: background .1s;
+
+      &:last-child { border-bottom: none; }
+      &:hover { background: v.$surface-2; }
+    }
+
+    td {
+      padding: 11px 16px;
+      font-size: .875rem;
+      vertical-align: middle;
+      max-width: 260px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 4px;
+    white-space: nowrap;
+  }
+}
+
+.empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  color: v.$text-mute;
+
+  .material-icons-round { font-size: 40px; display: block; margin-bottom: 12px; }
+}
+
+// ── Modal ───────────────────────────────────────────────────────────────────
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: fade-in .15s ease;
+}
+
+.modal {
+  background: v.$surface;
+  border-radius: v.$radius * 1.5;
+  width: 100%;
+  max-width: 580px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0,0,0,.2);
+  animation: scale-in .15s ease;
+
+  &--wide { max-width: 720px; }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px 16px;
+    border-bottom: 1.5px solid v.$border;
+
+    h2 { font-size: 1rem; }
+  }
+
+  &__body {
+    padding: 20px 24px;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 16px 24px;
+    border-top: 1.5px solid v.$border;
+    background: v.$surface-2;
+  }
+}
+
+// ── Confirm dialog ──────────────────────────────────────────────────────────
+.confirm-modal {
+  max-width: 380px;
+
+  &__icon {
+    color: v.$danger;
+    font-size: 36px !important;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  p { color: v.$text-mute; font-size: .9rem; line-height: 1.5; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(.95); }
+  to   { opacity: 1; transform: scale(1); }
+}

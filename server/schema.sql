@@ -406,3 +406,13 @@ INSERT INTO info_facts (fkey, lang, value) VALUES
 ('time','en','12:00 – 03:00'),
 ('lockers','nl','Op het festivalterrein zijn lockers aanwezig waar je je spullen veilig kunt opbergen. Klein €4 · Middel €6 · Groot €8.'),
 ('lockers','en','Lockers are available on site to safely store your belongings. Small €4 · Medium €6 · Large €8.');
+
+-- =====================================================================
+-- Admin gebruikers (CMS)
+-- =====================================================================
+CREATE TABLE IF NOT EXISTS admin_users (
+  id         INT AUTO_INCREMENT PRIMARY KEY,
+  username   VARCHAR(64)  NOT NULL UNIQUE,
+  pw_hash    VARCHAR(255) NOT NULL,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
