@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type CSSProperties } from 'react';
 import { useApp } from '../../context/AppContext';
 import { MatIcon } from '../../components/brand/MatIcon';
 import { Section } from '../../components/section/Section';
@@ -130,7 +130,7 @@ export default function Info() {
       <Section title={t.reach}>
         <div className="info__reach">
           {reach.map((r, i) => (
-            <div key={i} className="info__reach-item">
+            <div key={i} className="info__reach-item" style={{ '--i': i } as CSSProperties}>
               <div className="info__reach-icon">
                 <MatIcon name={r.icon} size={22} color="var(--accent)" weight={500} />
               </div>
@@ -152,7 +152,7 @@ export default function Info() {
       <Section title={t.faq}>
         <div className="info__faqs">
           {faqs.map((f, i) => (
-            <FAQItem key={i} q={f.q} a={f.a} />
+            <FAQItem key={i} idx={i} q={f.q} a={f.a} />
           ))}
         </div>
       </Section>
@@ -169,17 +169,22 @@ function InfoRow({ k, v }: { k: string; v: string }) {
   );
 }
 
-function FAQItem({ q, a }: { q: string; a: string }) {
+function FAQItem({ q, a, idx }: { q: string; a: string; idx: number }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className={`info__faq ${open ? 'is-open' : ''}`}>
+    <div
+      className={`info__faq ${open ? 'is-open' : ''}`}
+      style={{ '--i': idx } as CSSProperties}
+    >
       <button type="button" className="info__faq-head" onClick={() => setOpen(!open)}>
         <span className="info__faq-q">{q}</span>
         <span className={`info__faq-chev ${open ? 'is-open' : ''}`}>
           <MatIcon name="expand_more" size={20} color="var(--text-mute)" weight={500} />
         </span>
       </button>
-      {open && <div className="info__faq-a">{a}</div>}
+      <div className="info__faq-body">
+        <div className="info__faq-a">{a}</div>
+      </div>
     </div>
   );
 }

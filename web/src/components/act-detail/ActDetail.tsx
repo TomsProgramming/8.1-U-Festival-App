@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import { formatHour, type DayId, type Stage } from '../../data/festival';
 import { Icons } from '../brand/Icons';
@@ -8,6 +8,15 @@ import './act-detail.scss';
 export function ActDetail() {
   const { actDetail, showActDetail, favorites, toggleFav, lang, t, stages, acts, schedule } = useApp();
   const [showVideo, setShowVideo] = useState(false);
+  const [closing, setClosing] = useState(false);
+
+  useEffect(() => { setClosing(false); }, [actDetail]);
+
+  const handleClose = useCallback(() => {
+    setClosing(true);
+    setTimeout(() => showActDetail(null), 260);
+  }, [showActDetail]);
+
   if (!actDetail) return null;
 
   const act = acts.find((x) => x.id === actDetail);
@@ -25,7 +34,7 @@ export function ActDetail() {
   }
 
   return (
-    <div className="act-detail" role="dialog" aria-modal="true">
+    <div className={`act-detail${closing ? ' is-closing' : ''}`} role="dialog" aria-modal="true">
       <div
         className="act-detail__hero"
         style={{ backgroundImage: `url('${act.img}')` }}
@@ -35,7 +44,7 @@ export function ActDetail() {
           <button
             type="button"
             className="act-detail__icon-btn"
-            onClick={() => showActDetail(null)}
+            onClick={handleClose}
             aria-label="Close"
           >
             {Icons.close('#fff', 16)}

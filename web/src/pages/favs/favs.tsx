@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import { useApp } from '../../context/AppContext';
 import { formatHour, type DayId, type Stage } from '../../data/festival';
 import { Icons } from '../../components/brand/Icons';
@@ -50,10 +51,10 @@ export default function Favs() {
         </div>
       ) : (
         <div className="favs__list">
-          {favActs.map((a) => {
+          {favActs.map((a, i) => {
             const shows = scheduleFor(a.id);
             return (
-              <div key={a.id} className="favs__item" onClick={() => showActDetail(a.id)}>
+              <div key={a.id} className="favs__item" onClick={() => showActDetail(a.id)} style={{ '--i': i } as CSSProperties}>
                 <img src={a.img} alt={a.name} className="favs__img" />
                 <div className="favs__info">
                   <div className="favs__name">{a.name}</div>

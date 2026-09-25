@@ -16,6 +16,11 @@
   align-items: center;
   gap: 10px;
   animation: toastIn 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  &.is-exiting {
+    animation: toastOut 0.26s cubic-bezier(0.4, 0, 0.6, 1) both;
+    pointer-events: none;
+  }
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
 
   &__icon {

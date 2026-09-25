@@ -8,6 +8,11 @@
   overflow-y: auto;
   animation: slideUp 0.32s cubic-bezier(0.2, 0.8, 0.2, 1);
 
+  &.is-closing {
+    animation: slideDown 0.26s cubic-bezier(0.4, 0, 0.6, 1) both;
+    pointer-events: none;
+  }
+
   &__hero {
     height: 380px;
     background-position: center;
@@ -69,6 +74,7 @@
       background: rgba(240, 50, 40, 0.18);
       border-color: rgba(240, 50, 40, 0.55);
       box-shadow: 0 4px 12px rgba(240, 50, 40, 0.18);
+      animation: heartBeat 0.38s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
   }
 

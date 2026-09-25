@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
 import { formatHour, type Stage, type ScheduleItem, type Act } from '../../data/festival';
@@ -49,6 +50,7 @@ export default function Home() {
           {upcoming.map((u, i) => (
             <UpNextCard
               key={i}
+              idx={i}
               item={u}
               fav={favorites.includes(u.act.id)}
               onToggle={() => toggleFav(u.act.id)}
@@ -61,7 +63,7 @@ export default function Home() {
       <Section title={t.stagesHeader}>
         <div className="home__stages">
           {stages.map((s, i) => (
-            <StageRow key={s.id} stage={s} idx={i} lang={lang} onClick={() => navigate('/map')} />
+            <StageRow key={s.id} stage={s} idx={i} animIdx={i} lang={lang} onClick={() => navigate('/map')} />
           ))}
         </div>
       </Section>
@@ -120,14 +122,16 @@ function UpNextCard({
   fav,
   onToggle,
   onClick,
+  idx,
 }: {
   item: UpNextItem;
   fav: boolean;
   onToggle: () => void;
   onClick: () => void;
+  idx: number;
 }) {
   return (
-    <div className="upnext" onClick={onClick}>
+    <div className="upnext" onClick={onClick} style={{ '--i': idx } as CSSProperties}>
       <div className="upnext__img" style={{ backgroundImage: `url('${item.act.img}')` }}>
         <div className="upnext__img-overlay" />
         <div
@@ -158,9 +162,9 @@ function UpNextCard({
   );
 }
 
-function StageRow({ stage, idx, lang, onClick }: { stage: Stage; idx: number; lang: 'nl' | 'en'; onClick: () => void }) {
+function StageRow({ stage, idx, animIdx, lang, onClick }: { stage: Stage; idx: number; animIdx: number; lang: 'nl' | 'en'; onClick: () => void }) {
   return (
-    <div className="stagerow" onClick={onClick} style={{ backgroundImage: `url('${stage.img}')` }}>
+    <div className="stagerow" onClick={onClick} style={{ backgroundImage: `url('${stage.img}')`, '--i': animIdx } as CSSProperties}>
       <div className="stagerow__overlay" />
       <div className="stagerow__inner">
         <div className="stagerow__head">

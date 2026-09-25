@@ -82,6 +82,8 @@
     border: 1px solid var(--border);
     align-items: center;
     transition: transform 0.18s ease, border-color 0.18s ease;
+    animation: slideUp 0.32s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-delay: calc(var(--i, 0) * 60ms);
 
     &:hover {
       border-color: var(--accent-soft-border);
@@ -152,6 +154,8 @@
     border: 1px solid var(--border);
     overflow: hidden;
     transition: border-color 0.2s ease;
+    animation: slideUp 0.32s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-delay: calc(var(--i, 0) * 45ms);
 
     &.is-open {
       border-color: var(--accent-soft-border);
@@ -179,7 +183,7 @@
   }
 
   &__faq-chev {
-    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
     display: inline-flex;
 
     &.is-open {
@@ -187,12 +191,29 @@
     }
   }
 
+  // Grid-trick: animates height smoothly on both open and close
+  &__faq-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  &__faq.is-open &__faq-body {
+    grid-template-rows: 1fr;
+  }
+
   &__faq-a {
-    padding: 0 16px 14px;
+    overflow: hidden;
+    min-height: 0;
+    padding: 0 16px;
     @include m.body(13px);
     color: var(--text-dim);
     line-height: 1.5;
-    animation: slideUp 0.22s ease-out;
+    transition: padding-bottom 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  &__faq.is-open &__faq-a {
+    padding-bottom: 14px;
   }
 
   &__sync {

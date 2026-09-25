@@ -215,6 +215,8 @@
   cursor: pointer;
   transition: transform 0.18s ease, box-shadow 0.18s ease;
   box-shadow: var(--shadow-card);
+  animation: slideUp 0.34s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: calc(var(--i, 0) * 70ms);
 
   &:active { transform: scale(0.98); }
 
@@ -291,6 +293,8 @@
   background-position: center;
   background-size: cover;
   transition: transform 0.18s ease;
+  animation: slideUp 0.34s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: calc(var(--i, 0) * 65ms);
 
   &:active { transform: scale(0.99); }
 
